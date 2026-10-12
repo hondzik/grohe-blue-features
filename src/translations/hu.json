@@ -32,6 +32,20 @@
       "reset": "Visszaállítás a felismert érzékelőre",
       "percent_sensor": "Százalék érzékelő",
       "liters_sensor": "Liter érzékelő"
+    },
+    "edge_content": {
+      "label": "Szélső tartalom",
+      "description": "Mi jelenjen meg a sávok melletti szélen.",
+      "icon": "Ikon",
+      "value": "Érték"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Szűrő"
+    },
+    "order": {
+      "label": "Sorrend",
+      "description": "Melyik sáv legyen az első (bal oldalon)."
     }
   },
   "feature": {

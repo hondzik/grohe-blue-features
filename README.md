@@ -27,12 +27,36 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 | Feature | Type | Default color | Default icon |
 | ------- | ---- | ------------- | ------------ |
 | Grohe Blue CO2 level | `custom:grohe-blue-co2-feature` | blue | `mdi:molecule-co2` |
-| Grohe Blue filter level | `custom:grohe-blue-filter-feature` | green | `mdi:water-check-outline` |
+| Grohe Blue filter level | `custom:grohe-blue-filter-feature` | green | `mdi:air-filter` |
+| Grohe Blue CO2 + filter level | `custom:grohe-blue-combined-feature` | blue / green | as above |
 
 Both features share the same options: value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
 
 ![Percent, right](docs/images/percent-right.png)
 ![Liters, left](docs/images/liters-left.png)
+
+### Combined feature
+
+`grohe-blue-combined-feature` shows both bars side by side in a single row: `[icon/value] CO2 bar  gap  filter bar [icon/value]`. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped.
+
+![Combined feature](docs/images/combined.png)
+
+| Option | Type | Default | Description |
+| ------ | ---- | ------- | ----------- |
+| `unit` | `percent` \| `liter` | `percent` | Unit of the values (used with `edge_content: value`). Bars always follow the percentage. |
+| `edge_content` | `icon` \| `value` | `icon` | What is shown at the outer edge of each bar. |
+| `order` | `co2_filter` \| `filter_co2` | `co2_filter` | Which bar comes first (left). |
+| `co2_color` / `filter_color` | string | `blue` / `green` | Bar colors (palette name or CSS color). |
+| `co2_icon` / `filter_icon` | string | feature default | Custom icons. |
+| `co2_entity` / `co2_liters_entity` / `filter_entity` / `filter_liters_entity` | string | auto | Sensor overrides. |
+
+```yaml
+features:
+  - type: custom:grohe-blue-combined-feature
+    edge_content: value
+    order: filter_co2
+    unit: liter
+```
 
 ## Installation
 

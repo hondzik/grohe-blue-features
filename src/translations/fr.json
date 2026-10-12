@@ -32,6 +32,20 @@
       "reset": "Revenir au capteur détecté",
       "percent_sensor": "Capteur de pourcentage",
       "liters_sensor": "Capteur de litres"
+    },
+    "edge_content": {
+      "label": "Contenu du bord",
+      "description": "Ce qui s’affiche au bord à côté de chaque barre.",
+      "icon": "Icône",
+      "value": "Valeur"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filtre"
+    },
+    "order": {
+      "label": "Ordre",
+      "description": "Quelle barre vient en premier (à gauche)."
     }
   },
   "feature": {

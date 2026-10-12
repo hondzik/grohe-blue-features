@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeLevelDisplay, getBoolConfigVal, getUnit, getValuePosition, resolveCssColor, resolveIcon } from './level-display';
+import { computeLevelDisplay, getBoolConfigVal, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
 
 describe('config helpers', () => {
   it('getBoolConfigVal uses the default when unset', () => {
@@ -34,7 +34,7 @@ describe('resolveCssColor', () => {
 describe('resolveIcon', () => {
   it('returns the default icon per kind', () => {
     expect(resolveIcon(undefined, 'co2')).toBe('mdi:molecule-co2');
-    expect(resolveIcon({}, 'filter')).toBe('mdi:water-check-outline');
+    expect(resolveIcon({}, 'filter')).toBe('mdi:air-filter');
   });
 
   it('returns a custom icon, or nothing when icons are disabled', () => {
@@ -65,5 +65,18 @@ describe('computeLevelDisplay', () => {
 
   it('reports unavailable values', () => {
     expect(computeLevelDisplay({ percent: { origin: 'auto' } }, 'percent', 'en')).toEqual({ percent: 0, text: '–', available: false });
+  });
+});
+
+describe('kindConfig', () => {
+  const config = { unit: 'liter' as const, co2_color: 'red', filter_color: 'teal', co2_icon: 'mdi:a', filter_entity: 'sensor.f', co2_liters_entity: 'sensor.cl' };
+
+  it('maps the per-kind keys to the single-feature shape', () => {
+    expect(kindConfig(config, 'co2')).toEqual({ unit: 'liter', color: 'red', icon: 'mdi:a', entity: undefined, liters_entity: 'sensor.cl' });
+    expect(kindConfig(config, 'filter')).toMatchObject({ color: 'teal', entity: 'sensor.f', icon: undefined });
+  });
+
+  it('tolerates a missing config', () => {
+    expect(kindConfig(undefined, 'co2').color).toBeUndefined();
   });
 });

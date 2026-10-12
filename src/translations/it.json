@@ -32,6 +32,20 @@
       "reset": "Ripristina il sensore rilevato",
       "percent_sensor": "Sensore percentuale",
       "liters_sensor": "Sensore litri"
+    },
+    "edge_content": {
+      "label": "Contenuto del bordo",
+      "description": "Cosa viene mostrato sul bordo accanto a ogni barra.",
+      "icon": "Icona",
+      "value": "Valore"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filtro"
+    },
+    "order": {
+      "label": "Ordine",
+      "description": "Quale barra viene per prima (a sinistra)."
     }
   },
   "feature": {

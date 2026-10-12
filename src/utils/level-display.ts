@@ -1,7 +1,7 @@
 import type { LevelKind, LevelSources } from './level-sources';
 
 export const DEFAULT_COLORS: Record<LevelKind, string> = { co2: 'blue', filter: 'green' };
-export const DEFAULT_ICONS: Record<LevelKind, string> = { co2: 'mdi:molecule-co2', filter: 'mdi:water-check-outline' };
+export const DEFAULT_ICONS: Record<LevelKind, string> = { co2: 'mdi:molecule-co2', filter: 'mdi:air-filter' };
 
 export function getBoolConfigVal(config: Partial<GroheBlueFeatureConfig> | undefined, key: keyof GroheBlueFeatureConfig, defaultValue: boolean): boolean {
   const value = config?.[key];
@@ -28,6 +28,17 @@ export function resolveCssColor(color: string | undefined, kind: LevelKind): str
 export function resolveIcon(config: Partial<GroheBlueFeatureConfig> | undefined, kind: LevelKind): string | undefined {
   if (!getBoolConfigVal(config, 'show_icon', true)) return undefined;
   return config?.icon?.trim() || DEFAULT_ICONS[kind];
+}
+
+/** Maps the combined config's per-kind keys (`co2_entity`, ...) to the single-feature shape used by the shared utils. */
+export function kindConfig(config: Partial<GroheBlueCombinedFeatureConfig> | undefined, kind: LevelKind): Partial<GroheBlueFeatureConfig> {
+  return {
+    unit: config?.unit,
+    color: config?.[`${kind}_color`],
+    icon: config?.[`${kind}_icon`],
+    entity: config?.[`${kind}_entity`],
+    liters_entity: config?.[`${kind}_liters_entity`],
+  };
 }
 
 export type LevelDisplay = {

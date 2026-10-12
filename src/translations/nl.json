@@ -32,6 +32,20 @@
       "reset": "Terug naar gedetecteerde sensor",
       "percent_sensor": "Percentagesensor",
       "liters_sensor": "Litersensor"
+    },
+    "edge_content": {
+      "label": "Inhoud aan de rand",
+      "description": "Wat aan de rand naast elke balk wordt getoond.",
+      "icon": "Pictogram",
+      "value": "Waarde"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filter"
+    },
+    "order": {
+      "label": "Volgorde",
+      "description": "Welke balk eerst komt (links)."
     }
   },
   "feature": {

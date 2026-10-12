@@ -32,6 +32,20 @@
       "reset": "Auf erkannten Sensor zurücksetzen",
       "percent_sensor": "Prozent-Sensor",
       "liters_sensor": "Liter-Sensor"
+    },
+    "edge_content": {
+      "label": "Inhalt am Rand",
+      "description": "Was am Rand neben jeder Anzeige dargestellt wird.",
+      "icon": "Symbol",
+      "value": "Wert"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filter"
+    },
+    "order": {
+      "label": "Reihenfolge",
+      "description": "Welche Anzeige zuerst (links) steht."
     }
   },
   "feature": {

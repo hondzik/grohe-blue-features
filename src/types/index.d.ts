@@ -48,6 +48,25 @@ declare global {
     liters_entity?: string;
   };
 
+  type GroheEdgeContent = 'icon' | 'value';
+
+  type GroheBlueCombinedFeatureConfig = FeatureConfig & {
+    /** Unit of the displayed values; the bars always follow the percentage. */
+    unit?: GroheLevelUnit;
+    /** What is shown at the outer edge of each bar. */
+    edge_content?: GroheEdgeContent;
+    /** Which bar comes first (left). */
+    order?: 'co2_filter' | 'filter_co2';
+    co2_color?: string;
+    filter_color?: string;
+    co2_icon?: string;
+    filter_icon?: string;
+    co2_entity?: string;
+    co2_liters_entity?: string;
+    filter_entity?: string;
+    filter_liters_entity?: string;
+  };
+
   // Minimal shape of the entity/device registry display data the frontend
   // attaches to the hass object (missing from custom-card-helpers' types).
   interface EntityRegistryDisplayEntry {

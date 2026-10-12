@@ -32,6 +32,20 @@
       "reset": "Obnoviť rozpoznaný senzor",
       "percent_sensor": "Senzor percent",
       "liters_sensor": "Senzor litrov"
+    },
+    "edge_content": {
+      "label": "Obsah na kraji",
+      "description": "Čo sa zobrazí na kraji vedľa každého ukazovateľa.",
+      "icon": "Ikona",
+      "value": "Hodnota"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filter"
+    },
+    "order": {
+      "label": "Poradie",
+      "description": "Ktorý ukazovateľ je prvý (vľavo)."
     }
   },
   "feature": {

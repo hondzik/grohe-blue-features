@@ -32,6 +32,20 @@
       "reset": "Återställ till upptäckt sensor",
       "percent_sensor": "Procentsensor",
       "liters_sensor": "Litersensor"
+    },
+    "edge_content": {
+      "label": "Innehåll i kanten",
+      "description": "Vad som visas i kanten bredvid varje fält.",
+      "icon": "Ikon",
+      "value": "Värde"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filter"
+    },
+    "order": {
+      "label": "Ordning",
+      "description": "Vilket fält som kommer först (till vänster)."
     }
   },
   "feature": {

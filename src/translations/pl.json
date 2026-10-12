@@ -32,6 +32,20 @@
       "reset": "Przywróć wykryty czujnik",
       "percent_sensor": "Czujnik procentów",
       "liters_sensor": "Czujnik litrów"
+    },
+    "edge_content": {
+      "label": "Zawartość na brzegu",
+      "description": "Co jest wyświetlane na brzegu obok każdego paska.",
+      "icon": "Ikona",
+      "value": "Wartość"
+    },
+    "sections": {
+      "co2": "CO2",
+      "filter": "Filtr"
+    },
+    "order": {
+      "label": "Kolejność",
+      "description": "Który pasek jest pierwszy (po lewej)."
     }
   },
   "feature": {
