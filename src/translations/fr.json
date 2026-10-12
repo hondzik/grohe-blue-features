@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Unité affichée",
+      "description": "Unité de la valeur à côté de la barre. La barre suit toujours le pourcentage.",
+      "percent": "Pourcentage (%)",
+      "liter": "Litres (L)"
+    },
+    "color": {
+      "label": "Couleur de la barre",
+      "description": "Couleur de la barre de progression."
+    },
+    "value_position": {
+      "label": "Position de la valeur",
+      "description": "Où la valeur est affichée par rapport à la barre.",
+      "left": "Gauche",
+      "right": "Droite"
+    },
+    "show_icon": {
+      "label": "Afficher l’icône",
+      "description": "Affiche une icône devant la barre."
+    },
+    "icon": {
+      "label": "Icône"
+    },
+    "sources": {
+      "title": "Sources",
+      "mode_auto": "Capteurs détectés automatiquement depuis l’appareil Grohe",
+      "mode_none": "Aucun capteur détecté — assignez-les manuellement",
+      "auto": "Auto",
+      "manual": "Manuel",
+      "reset": "Revenir au capteur détecté",
+      "percent_sensor": "Capteur de pourcentage",
+      "liters_sensor": "Capteur de litres"
+    }
+  },
+  "feature": {
+    "unsupported": "Fonctionnalité non prise en charge"
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "isolatedModules": true,
+    "target": "ES2021",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "experimentalDecorators": true,
+    "useDefineForClassFields": false,
+    "resolveJsonModule": true,
+    "sourceMap": false,
+    "strict": true,
+  }
+}

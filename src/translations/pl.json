@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Wyświetlana jednostka",
+      "description": "Jednostka wartości obok paska. Pasek zawsze odpowiada procentom.",
+      "percent": "Procenty (%)",
+      "liter": "Litry (L)"
+    },
+    "color": {
+      "label": "Kolor paska",
+      "description": "Kolor paska postępu."
+    },
+    "value_position": {
+      "label": "Położenie wartości",
+      "description": "Gdzie wyświetlana jest wartość względem paska.",
+      "left": "Po lewej",
+      "right": "Po prawej"
+    },
+    "show_icon": {
+      "label": "Pokaż ikonę",
+      "description": "Wyświetla ikonę przed paskiem."
+    },
+    "icon": {
+      "label": "Ikona"
+    },
+    "sources": {
+      "title": "Źródła",
+      "mode_auto": "Czujniki wykryte automatycznie z urządzenia Grohe",
+      "mode_none": "Nie wykryto czujników — przypisz je ręcznie",
+      "auto": "Auto",
+      "manual": "Ręcznie",
+      "reset": "Przywróć wykryty czujnik",
+      "percent_sensor": "Czujnik procentów",
+      "liters_sensor": "Czujnik litrów"
+    }
+  },
+  "feature": {
+    "unsupported": "Nieobsługiwana funkcja"
+  }
+}

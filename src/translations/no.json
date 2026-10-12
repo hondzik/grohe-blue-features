@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Vist enhet",
+      "description": "Enheten for verdien ved siden av linjen. Linjen følger alltid prosenten.",
+      "percent": "Prosent (%)",
+      "liter": "Liter (L)"
+    },
+    "color": {
+      "label": "Farge på linjen",
+      "description": "Fargen på fremdriftslinjen."
+    },
+    "value_position": {
+      "label": "Plassering av verdi",
+      "description": "Hvor verdien vises i forhold til linjen.",
+      "left": "Venstre",
+      "right": "Høyre"
+    },
+    "show_icon": {
+      "label": "Vis ikon",
+      "description": "Viser et ikon foran linjen."
+    },
+    "icon": {
+      "label": "Ikon"
+    },
+    "sources": {
+      "title": "Kilder",
+      "mode_auto": "Sensorer oppdaget automatisk fra Grohe-enheten",
+      "mode_none": "Ingen sensorer oppdaget — tilordne dem manuelt",
+      "auto": "Auto",
+      "manual": "Manuell",
+      "reset": "Tilbakestill til oppdaget sensor",
+      "percent_sensor": "Prosentsensor",
+      "liters_sensor": "Litersensor"
+    }
+  },
+  "feature": {
+    "unsupported": "Funksjonen støttes ikke"
+  }
+}

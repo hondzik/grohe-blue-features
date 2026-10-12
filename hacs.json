@@ -1,0 +1,7 @@
+{
+  "name": "Grohe Blue features for Tile cards",
+  "render_readme": true,
+  "filename": "grohe-blue-features.js",
+  "content_in_root": false,
+  "homeassistant": "2025.10.0"
+}

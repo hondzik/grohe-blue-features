@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Megjelenített mértékegység",
+      "description": "A sáv melletti érték mértékegysége. A sáv mindig a százalékot követi.",
+      "percent": "Százalék (%)",
+      "liter": "Liter (L)"
+    },
+    "color": {
+      "label": "A sáv színe",
+      "description": "Az előrehaladási sáv színe."
+    },
+    "value_position": {
+      "label": "Az érték helye",
+      "description": "Hol jelenjen meg az érték a sávhoz képest.",
+      "left": "Balra",
+      "right": "Jobbra"
+    },
+    "show_icon": {
+      "label": "Ikon megjelenítése",
+      "description": "Ikon megjelenítése a sáv előtt."
+    },
+    "icon": {
+      "label": "Ikon"
+    },
+    "sources": {
+      "title": "Források",
+      "mode_auto": "Az érzékelők automatikusan felismerve a Grohe eszközről",
+      "mode_none": "Nem található érzékelő — rendelje hozzá kézzel",
+      "auto": "Auto",
+      "manual": "Kézi",
+      "reset": "Visszaállítás a felismert érzékelőre",
+      "percent_sensor": "Százalék érzékelő",
+      "liters_sensor": "Liter érzékelő"
+    }
+  },
+  "feature": {
+    "unsupported": "Nem támogatott funkció"
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Weergegeven eenheid",
+      "description": "Eenheid van de waarde naast de balk. De balk volgt altijd het percentage.",
+      "percent": "Procent (%)",
+      "liter": "Liter (L)"
+    },
+    "color": {
+      "label": "Kleur van de balk",
+      "description": "Kleur van de voortgangsbalk."
+    },
+    "value_position": {
+      "label": "Positie van de waarde",
+      "description": "Waar de waarde ten opzichte van de balk wordt getoond.",
+      "left": "Links",
+      "right": "Rechts"
+    },
+    "show_icon": {
+      "label": "Pictogram tonen",
+      "description": "Toont een pictogram voor de balk."
+    },
+    "icon": {
+      "label": "Pictogram"
+    },
+    "sources": {
+      "title": "Bronnen",
+      "mode_auto": "Sensoren automatisch gedetecteerd op het Grohe-apparaat",
+      "mode_none": "Geen sensoren gedetecteerd — wijs ze handmatig toe",
+      "auto": "Auto",
+      "manual": "Handmatig",
+      "reset": "Terug naar gedetecteerde sensor",
+      "percent_sensor": "Percentagesensor",
+      "liters_sensor": "Litersensor"
+    }
+  },
+  "feature": {
+    "unsupported": "Niet-ondersteunde functie"
+  }
+}

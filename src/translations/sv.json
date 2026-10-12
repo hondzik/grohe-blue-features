@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Visad enhet",
+      "description": "Enhet för värdet bredvid fältet. Fältet följer alltid procenten.",
+      "percent": "Procent (%)",
+      "liter": "Liter (L)"
+    },
+    "color": {
+      "label": "Fältets färg",
+      "description": "Förloppsfältets färg."
+    },
+    "value_position": {
+      "label": "Värdets placering",
+      "description": "Var värdet visas i förhållande till fältet.",
+      "left": "Vänster",
+      "right": "Höger"
+    },
+    "show_icon": {
+      "label": "Visa ikon",
+      "description": "Visar en ikon framför fältet."
+    },
+    "icon": {
+      "label": "Ikon"
+    },
+    "sources": {
+      "title": "Källor",
+      "mode_auto": "Sensorer upptäckta automatiskt från Grohe-enheten",
+      "mode_none": "Inga sensorer upptäcktes — tilldela dem manuellt",
+      "auto": "Auto",
+      "manual": "Manuell",
+      "reset": "Återställ till upptäckt sensor",
+      "percent_sensor": "Procentsensor",
+      "liters_sensor": "Litersensor"
+    }
+  },
+  "feature": {
+    "unsupported": "Funktionen stöds inte"
+  }
+}

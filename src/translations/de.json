@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Angezeigte Einheit",
+      "description": "Einheit des Wertes neben der Anzeige. Die Anzeige folgt immer dem Prozentwert.",
+      "percent": "Prozent (%)",
+      "liter": "Liter (L)"
+    },
+    "color": {
+      "label": "Farbe der Anzeige",
+      "description": "Farbe des Fortschrittsbalkens."
+    },
+    "value_position": {
+      "label": "Position des Wertes",
+      "description": "Wo der Wert relativ zur Anzeige dargestellt wird.",
+      "left": "Links",
+      "right": "Rechts"
+    },
+    "show_icon": {
+      "label": "Symbol anzeigen",
+      "description": "Zeigt ein Symbol vor der Anzeige."
+    },
+    "icon": {
+      "label": "Symbol"
+    },
+    "sources": {
+      "title": "Quellen",
+      "mode_auto": "Sensoren automatisch vom Grohe-Gerät erkannt",
+      "mode_none": "Keine Sensoren erkannt — manuell zuweisen",
+      "auto": "Auto",
+      "manual": "Manuell",
+      "reset": "Auf erkannten Sensor zurücksetzen",
+      "percent_sensor": "Prozent-Sensor",
+      "liters_sensor": "Liter-Sensor"
+    }
+  },
+  "feature": {
+    "unsupported": "Nicht unterstützte Funktion"
+  }
+}

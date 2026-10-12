@@ -1,0 +1,40 @@
+{
+  "editor": {
+    "unit": {
+      "label": "Zobrazená jednotka",
+      "description": "Jednotka hodnoty vedľa ukazovateľa. Ukazovateľ vždy zodpovedá percentám.",
+      "percent": "Percentá (%)",
+      "liter": "Litre (L)"
+    },
+    "color": {
+      "label": "Farba ukazovateľa",
+      "description": "Farba ukazovateľa priebehu."
+    },
+    "value_position": {
+      "label": "Umiestnenie hodnoty",
+      "description": "Kde sa hodnota zobrazí voči ukazovateľu.",
+      "left": "Vľavo",
+      "right": "Vpravo"
+    },
+    "show_icon": {
+      "label": "Zobraziť ikonu",
+      "description": "Zobrazí ikonu pred ukazovateľom."
+    },
+    "icon": {
+      "label": "Ikona"
+    },
+    "sources": {
+      "title": "Zdroje",
+      "mode_auto": "Senzory automaticky rozpoznané zo zariadenia Grohe",
+      "mode_none": "Neboli rozpoznané žiadne senzory — priraďte ich ručne",
+      "auto": "Auto",
+      "manual": "Ručne",
+      "reset": "Obnoviť rozpoznaný senzor",
+      "percent_sensor": "Senzor percent",
+      "liters_sensor": "Senzor litrov"
+    }
+  },
+  "feature": {
+    "unsupported": "Nepodporované"
+  }
+}
