@@ -10,10 +10,14 @@ Home Assistant Lovelace **Tile card features** that show the remaining **CO2** a
 The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/ha-grohe_smarthome) integration (`grohe_smarthome`).
 
 ![CO2 and filter features](docs/images/overview.png)
+![Combined feature](docs/images/combined-percents.png)
 
 ## Table of contents <!-- omit from toc -->
 
 - [Features](#features)
+  - [CO2](#co2)
+  - [Filter](#filter)
+  - [CO2 + filter (combined)](#co2--filter-combined)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration options](#configuration-options)
@@ -21,6 +25,7 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 - [Using the visual editor](#using-the-visual-editor)
 - [Troubleshooting](#troubleshooting)
 - [Translations](#translations)
+- [Contributors](#contributors)
 
 ## Features
 
@@ -30,16 +35,41 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 | Grohe Blue filter level | `custom:grohe-blue-filter-feature` | green | `mdi:air-filter` |
 | Grohe Blue CO2 + filter level | `custom:grohe-blue-combined-feature` | blue / green | as above |
 
-Both features share the same options: value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
+The CO2 and filter features share the same [options](#configuration-options): value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
 
-![Percent, right](docs/images/percent-right.png)
-![Liters, left](docs/images/liters-left.png)
+### CO2
 
-### Combined feature
+Shows the remaining CO2 in the cylinder as a progress bar. The bar follows the `remaining_co2` percentage; with `unit: liter` the value shows the remaining liters (`remaining_co2_total`) instead.
 
-`grohe-blue-combined-feature` shows both bars side by side in a single row: `[icon/value] CO2 bar  gap  filter bar [icon/value]`. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped.
+![CO2 feature](docs/images/co2-percents.png)
 
-![Combined feature](docs/images/combined.png)
+```yaml
+features:
+  - type: custom:grohe-blue-co2-feature
+    unit: percent
+    color: blue
+    value_position: right
+```
+
+### Filter
+
+Shows the remaining capacity of the water filter. The bar follows the `remaining_filter` percentage; with `unit: liter` the value shows the remaining liters (`remaining_filter_total`) instead.
+
+![Filter feature](docs/images/filter-percents.png)
+
+```yaml
+features:
+  - type: custom:grohe-blue-filter-feature
+    unit: liter
+    color: teal
+    value_position: left
+```
+
+### CO2 + filter (combined)
+
+`grohe-blue-combined-feature` shows both bars side by side in a single row. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped.
+
+![Combined feature](docs/images/combined-icons.png)
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
@@ -68,7 +98,7 @@ HACS registers the Lovelace resource automatically. After installing, refresh yo
 
 ## Usage
 
-Add a Tile card for any entity of your GROHE Blue device and add the feature from the feature picker (**Grohe Blue CO2 level** / **Grohe Blue filter level**). The features are only offered for entities of the `grohe_smarthome` integration.
+Add a Tile card for any entity of your GROHE Blue device and add the feature from the feature picker (**Grohe Blue CO2 level**, **Grohe Blue filter level** or **Grohe Blue CO2 + filter level**). The features are only offered for entities of the `grohe_smarthome` integration.
 
 ```yaml
 type: tile
@@ -85,7 +115,7 @@ features:
 
 ## Configuration options
 
-All options can be set in YAML or in the visual editor.
+Options of the CO2 and filter features (the combined feature has its [own options](#co2--filter-combined)). All options can be set in YAML or in the visual editor.
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
@@ -114,7 +144,7 @@ Use `entity` / `liters_entity` to override the automatic choice.
 
 Use the pencil icon next to the feature in the Tile card editor. The dialog shows which sensors are in use (**auto** / **manual** chip) and lets you change the unit, color, value position and icon.
 
-![Visual editor](docs/images/editor.png)
+![Visual editor](docs/images/co2-editor.png)
 
 ## Troubleshooting
 
@@ -126,3 +156,7 @@ Use the pencil icon next to the feature in the Tile card editor. The dialog show
 ## Translations
 
 The visual editor is localized into Czech, German, English, Spanish, French, Hungarian, Italian, Dutch, Norwegian, Polish, Portuguese, Slovak, Swedish and Ukrainian (falls back to English). Issues and PRs with translation fixes are welcome.
+
+## Contributors
+
+[![Contributors](https://contrib.rocks/image?repo=hondzik/grohe-blue-features)](https://github.com/hondzik/grohe-blue-features/graphs/contributors)
