@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Contenuto del bordo",
       "description": "Cosa viene mostrato sul bordo accanto a ogni barra.",
-      "icon": "Icona",
-      "value": "Valore"
+      "icon": "Icona"
     },
     "sections": {
       "co2": "CO₂",

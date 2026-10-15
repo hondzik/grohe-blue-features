@@ -30,6 +30,14 @@ export function resolveIcon(config: Partial<GroheBlueFeatureConfig> | undefined,
   return config?.icon?.trim() || DEFAULT_ICONS[kind];
 }
 
+/** Edge content of the combined feature; the legacy `edge_content: value` + `unit` pair maps to `percent` / `liter`. */
+export function getEdgeContent(config: Partial<GroheBlueCombinedFeatureConfig> | undefined): GroheEdgeContent {
+  const content = config?.edge_content;
+  if (content === 'percent' || content === 'liter') return content;
+  if (content === 'value') return config?.unit === 'liter' ? 'liter' : 'percent';
+  return 'icon';
+}
+
 /** Maps the combined config's per-kind keys (`co2_entity`, ...) to the single-feature shape used by the shared utils. */
 export function kindConfig(config: Partial<GroheBlueCombinedFeatureConfig> | undefined, kind: LevelKind): Partial<GroheBlueFeatureConfig> {
   return {

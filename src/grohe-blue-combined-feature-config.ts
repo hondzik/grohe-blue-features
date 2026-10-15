@@ -2,7 +2,7 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { groheBlueLevelFeatureConfigStyles } from './grohe-blue-level-feature-config.styles';
 import setupCustomlocalize from './localize';
-import { DEFAULT_COLORS, DEFAULT_ICONS, getUnit } from './utils/level-display';
+import { DEFAULT_COLORS, DEFAULT_ICONS, getEdgeContent } from './utils/level-display';
 import { discoverLevelEntities, LEVEL_KINDS } from './utils/level-sources';
 import type { LevelKind } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
@@ -35,23 +35,12 @@ export class GroheBlueCombinedFeatureConfigEditor extends LitElement {
     return html`
       <div class="field">
         ${this.renderSelect(
-          'unit',
-          getUnit(this.config),
-          options([
-            ['percent', 'editor.unit.percent'],
-            ['liter', 'editor.unit.liter'],
-          ]),
-          'editor.unit',
-          localize,
-        )}
-      </div>
-      <div class="field">
-        ${this.renderSelect(
           'edge_content',
-          this.config.edge_content ?? 'icon',
+          getEdgeContent(this.config),
           options([
             ['icon', 'editor.edge_content.icon'],
-            ['value', 'editor.edge_content.value'],
+            ['percent', 'editor.unit.percent'],
+            ['liter', 'editor.unit.liter'],
           ]),
           'editor.edge_content',
           localize,

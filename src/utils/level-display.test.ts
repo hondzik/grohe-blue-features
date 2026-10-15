@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getBoolConfigVal, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
+import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getBoolConfigVal, getEdgeContent, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
 
 describe('config helpers', () => {
   it('getBoolConfigVal uses the default when unset', () => {
@@ -91,5 +91,19 @@ describe('computeLevelTitle', () => {
   it('omits liters when unavailable and shows a dash for a missing percentage', () => {
     expect(computeLevelTitle('Filter', { percent: { origin: 'auto', value: 40 } }, 'en')).toBe('Filter: 40 %');
     expect(computeLevelTitle('Filter', { liters: { origin: 'auto', value: 12 } }, 'en')).toBe('Filter: – / 12 l');
+  });
+});
+
+describe('getEdgeContent', () => {
+  it('defaults to the icon and passes percent / liter through', () => {
+    expect(getEdgeContent(undefined)).toBe('icon');
+    expect(getEdgeContent({ edge_content: 'icon' })).toBe('icon');
+    expect(getEdgeContent({ edge_content: 'percent' })).toBe('percent');
+    expect(getEdgeContent({ edge_content: 'liter' })).toBe('liter');
+  });
+
+  it('maps the legacy value + unit pair', () => {
+    expect(getEdgeContent({ edge_content: 'value' })).toBe('percent');
+    expect(getEdgeContent({ edge_content: 'value', unit: 'liter' })).toBe('liter');
   });
 });

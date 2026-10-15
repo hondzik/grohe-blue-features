@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Conteúdo da margem",
       "description": "O que é apresentado na margem junto a cada barra.",
-      "icon": "Ícone",
-      "value": "Valor"
+      "icon": "Ícone"
     },
     "sections": {
       "co2": "CO₂",

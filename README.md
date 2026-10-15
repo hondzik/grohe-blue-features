@@ -73,8 +73,7 @@ features:
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `unit` | `percent` \| `liter` | `percent` | Unit of the values (used with `edge_content: value`). Bars always follow the percentage. |
-| `edge_content` | `icon` \| `value` | `icon` | What is shown at the outer edge of each bar. |
+| `edge_content` | `icon` \| `percent` \| `liter` | `icon` | What is shown at the outer edge of each bar: the icon, or the value in percent / liters. Bars always follow the percentage. |
 | `order` | `co2_filter` \| `filter_co2` | `co2_filter` | Which bar comes first (left). |
 | `co2_color` / `filter_color` | string | `blue` / `green` | Bar colors (palette name or CSS color). |
 | `co2_icon` / `filter_icon` | string | feature default | Custom icons. |
@@ -83,9 +82,8 @@ features:
 ```yaml
 features:
   - type: custom:grohe-blue-combined-feature
-    edge_content: value
+    edge_content: liter
     order: filter_co2
-    unit: liter
 ```
 
 ## Installation

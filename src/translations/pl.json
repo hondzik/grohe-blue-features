@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Zawartość na brzegu",
       "description": "Co jest wyświetlane na brzegu obok każdego paska.",
-      "icon": "Ikona",
-      "value": "Wartość"
+      "icon": "Ikona"
     },
     "sections": {
       "co2": "CO₂",

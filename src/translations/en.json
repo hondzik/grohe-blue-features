@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Edge content",
       "description": "What is shown at the edge next to each bar.",
-      "icon": "Icon",
-      "value": "Value"
+      "icon": "Icon"
     },
     "sections": {
       "co2": "CO₂",

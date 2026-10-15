@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Szélső tartalom",
       "description": "Mi jelenjen meg a sávok melletti szélen.",
-      "icon": "Ikon",
-      "value": "Érték"
+      "icon": "Ikon"
     },
     "sections": {
       "co2": "CO₂",

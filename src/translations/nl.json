@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Inhoud aan de rand",
       "description": "Wat aan de rand naast elke balk wordt getoond.",
-      "icon": "Pictogram",
-      "value": "Waarde"
+      "icon": "Pictogram"
     },
     "sections": {
       "co2": "CO₂",

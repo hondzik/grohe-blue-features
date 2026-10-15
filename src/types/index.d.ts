@@ -48,13 +48,13 @@ declare global {
     liters_entity?: string;
   };
 
-  type GroheEdgeContent = 'icon' | 'value';
+  type GroheEdgeContent = 'icon' | 'percent' | 'liter';
 
   type GroheBlueCombinedFeatureConfig = FeatureConfig & {
-    /** Unit of the displayed values; the bars always follow the percentage. */
+    /** What is shown at the outer edge of each bar; the bars themselves always follow the percentage. `value` is the legacy form, resolved through `unit`. */
+    edge_content?: GroheEdgeContent | 'value';
+    /** @deprecated Replaced by `edge_content: percent | liter`; only read together with the legacy `edge_content: value`. */
     unit?: GroheLevelUnit;
-    /** What is shown at the outer edge of each bar. */
-    edge_content?: GroheEdgeContent;
     /** Which bar comes first (left). */
     order?: 'co2_filter' | 'filter_co2';
     co2_color?: string;

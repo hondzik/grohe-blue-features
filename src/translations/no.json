@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Innhold i kanten",
       "description": "Hva som vises i kanten ved siden av hver linje.",
-      "icon": "Ikon",
-      "value": "Verdi"
+      "icon": "Ikon"
     },
     "sections": {
       "co2": "CO₂",

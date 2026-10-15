@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Inhalt am Rand",
       "description": "Was am Rand neben jeder Anzeige dargestellt wird.",
-      "icon": "Symbol",
-      "value": "Wert"
+      "icon": "Symbol"
     },
     "sections": {
       "co2": "CO₂",

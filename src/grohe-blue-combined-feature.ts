@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { groheBlueCombinedFeatureStyles } from './grohe-blue-combined-feature.styles';
 import setupCustomlocalize from './localize';
-import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, DEFAULT_ICONS, getUnit, kindConfig, resolveCssColor } from './utils/level-display';
+import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, DEFAULT_ICONS, getEdgeContent, kindConfig, resolveCssColor } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
 import type { LevelKind } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
@@ -55,10 +55,11 @@ export class GroheBlueCombinedFeature extends LitElement {
   private renderItem(hass: HomeAssistant, kind: LevelKind, first: boolean): TemplateResult {
     const cfg = kindConfig(this.config, kind);
     const sources = resolveLevelSources(hass, this.context?.entity_id, kind, cfg);
-    const display = computeLevelDisplay(sources, getUnit(this.config), hass.locale?.language);
+    const edgeContent = getEdgeContent(this.config);
+    const display = computeLevelDisplay(sources, edgeContent === 'liter' ? 'liter' : 'percent', hass.locale?.language);
     const title = computeLevelTitle(kind === 'co2' ? CO2_LABEL : setupCustomlocalize(hass)('feature.name.filter'), sources, hass.locale?.language);
     const edge = html`<div class="edge ${first ? 'first' : 'second'}">
-      ${this.config?.edge_content === 'value' ? display.text : html`<ha-icon icon=${cfg.icon?.trim() || DEFAULT_ICONS[kind]}></ha-icon>`}
+      ${edgeContent === 'icon' ? html`<ha-icon icon=${cfg.icon?.trim() || DEFAULT_ICONS[kind]}></ha-icon>` : display.text}
     </div>`;
     const bar = html`<div class="bar" title=${title}><div class="level" style="width: ${display.percent}%;"></div></div>`;
 

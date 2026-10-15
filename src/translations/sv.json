@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Innehåll i kanten",
       "description": "Vad som visas i kanten bredvid varje fält.",
-      "icon": "Ikon",
-      "value": "Värde"
+      "icon": "Ikon"
     },
     "sections": {
       "co2": "CO₂",

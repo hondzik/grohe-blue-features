@@ -36,8 +36,7 @@
     "edge_content": {
       "label": "Obsah na kraji",
       "description": "Co se zobrazí na kraji vedle každého ukazatele.",
-      "icon": "Ikona",
-      "value": "Hodnota"
+      "icon": "Ikona"
     },
     "sections": {
       "co2": "CO₂",
