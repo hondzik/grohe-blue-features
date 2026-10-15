@@ -22,7 +22,7 @@
     "filter"
   ],
   "type": "module",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "module": "./dist/grohe-blue-features.js",
   "scripts": {
     "watch": "rollup -c conf/rollup.config.js -w",
