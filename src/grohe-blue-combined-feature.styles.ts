@@ -57,6 +57,11 @@ export const groheBlueCombinedFeatureStyles = css`
     margin-left: 8px;
   }
 
+  /* the right bar is anchored to the right edge, so it shrinks from the middle of the card */
+  .item + .item .level {
+    margin-left: auto;
+  }
+
   .level {
     height: 100%;
     background-color: color-mix(in srgb, var(--level-color) 70%, transparent);

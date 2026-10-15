@@ -5,19 +5,19 @@
 [![Project Maintenance](https://img.shields.io/badge/maintainer-hondzik-blue.svg?style=for-the-badge)](https://github.com/hondzik)
 [![GitHub Activity](https://img.shields.io/github/last-commit/hondzik/grohe-blue-features?style=for-the-badge)](https://github.com/hondzik/grohe-blue-features/commits/main)
 
-Home Assistant Lovelace **Tile card features** that show the remaining **CO2** and **filter** capacity of a GROHE Blue water dispenser as a progress bar underneath a Tile card, the same way built-in features like "Cover open/close" attach to a Tile card.
+Home Assistant Lovelace **Tile card features** that show the remaining **CO<sub>2</sub>** and **filter** capacity of a GROHE Blue water dispenser as a progress bar underneath a Tile card, the same way built-in features like "Cover open/close" attach to a Tile card.
 
 The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/ha-grohe_smarthome) integration (`grohe_smarthome`).
 
-![CO2 and filter features](docs/images/overview.png)
+![CO₂ and filter features](docs/images/overview.png)
 ![Combined feature](docs/images/combined-percents.png)
 
 ## Table of contents <!-- omit from toc -->
 
 - [Features](#features)
-  - [CO2](#co2)
+  - [CO<sub>2</sub>](#co2)
   - [Filter](#filter)
-  - [CO2 + filter (combined)](#co2--filter-combined)
+  - [CO<sub>2</sub> + filter (combined)](#co2--filter-combined)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Configuration options](#configuration-options)
@@ -31,17 +31,17 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 
 | Feature | Type | Default color | Default icon |
 | ------- | ---- | ------------- | ------------ |
-| Grohe Blue CO2 level | `custom:grohe-blue-co2-feature` | blue | `mdi:molecule-co2` |
+| Grohe Blue CO<sub>2</sub> level | `custom:grohe-blue-co2-feature` | blue | `mdi:molecule-co2` |
 | Grohe Blue filter level | `custom:grohe-blue-filter-feature` | green | `mdi:air-filter` |
-| Grohe Blue CO2 + filter level | `custom:grohe-blue-combined-feature` | blue / green | as above |
+| Grohe Blue CO<sub>2</sub> + filter level | `custom:grohe-blue-combined-feature` | blue / green | as above |
 
-The CO2 and filter features share the same [options](#configuration-options): value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
+The CO<sub>2</sub> and filter features share the same [options](#configuration-options): value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
 
-### CO2
+### CO<sub>2</sub>
 
-Shows the remaining CO2 in the cylinder as a progress bar. The bar follows the `remaining_co2` percentage; with `unit: liter` the value shows the remaining liters (`remaining_co2_total`) instead.
+Shows the remaining CO<sub>2</sub> in the cylinder as a progress bar. The bar follows the `remaining_co2` percentage; with `unit: liter` the value shows the remaining liters (`remaining_co2_total`) instead.
 
-![CO2 feature](docs/images/co2-percents.png)
+![CO₂ feature](docs/images/co2-percents.png)
 
 ```yaml
 features:
@@ -65,7 +65,7 @@ features:
     value_position: left
 ```
 
-### CO2 + filter (combined)
+### CO<sub>2</sub> + filter (combined)
 
 `grohe-blue-combined-feature` shows both bars side by side in a single row. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped.
 
@@ -98,7 +98,7 @@ HACS registers the Lovelace resource automatically. After installing, refresh yo
 
 ## Usage
 
-Add a Tile card for any entity of your GROHE Blue device and add the feature from the feature picker (**Grohe Blue CO2 level**, **Grohe Blue filter level** or **Grohe Blue CO2 + filter level**). The features are only offered for entities of the `grohe_smarthome` integration.
+Add a Tile card for any entity of your GROHE Blue device and add the feature from the feature picker (**Grohe Blue CO<sub>2</sub> level**, **Grohe Blue filter level** or **Grohe Blue CO<sub>2</sub> + filter level**). The features are only offered for entities of the `grohe_smarthome` integration.
 
 ```yaml
 type: tile
@@ -115,12 +115,12 @@ features:
 
 ## Configuration options
 
-Options of the CO2 and filter features (the combined feature has its [own options](#co2--filter-combined)). All options can be set in YAML or in the visual editor.
+Options of the CO<sub>2</sub> and filter features (the combined feature has its [own options](#co2--filter-combined)). All options can be set in YAML or in the visual editor.
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
 | `unit` | `percent` \| `liter` | `percent` | Unit of the value next to the bar. The bar itself always follows the percentage. |
-| `color` | string | `blue` (CO2), `green` (filter) | Bar color. A Home Assistant palette name (`red`, `deep-orange`, `teal`, …) or any CSS color. |
+| `color` | string | `blue` (CO<sub>2</sub>), `green` (filter) | Bar color. A Home Assistant palette name (`red`, `deep-orange`, `teal`, …) or any CSS color. |
 | `value_position` | `left` \| `right` | `right` | Position of the value relative to the bar. |
 | `show_icon` | boolean | `true` | Show an icon in front of the bar. |
 | `icon` | string | feature default | Custom icon, e.g. `mdi:gas-cylinder`. Empty means the default icon. |
@@ -133,7 +133,7 @@ You don't have to configure any entity. The feature looks at the device of the T
 
 | Feature | Percentage sensor (bar, `%` value) | Liters sensor (`liter` value) |
 | ------- | ---------------------------------- | ----------------------------- |
-| CO2 | `*_remaining_co2` | `*_remaining_co2_total` |
+| CO<sub>2</sub> | `*_remaining_co2` | `*_remaining_co2_total` |
 | Filter | `*_remaining_filter` (falls back to `*_remaining_filter_app`) | `*_remaining_filter_total` |
 
 If an entity was renamed, the sensors are still matched by the words `co2` / `filter` in the entity id or name together with the unit (`%` or `L`). In `liter` mode the bar still uses the percentage sensor; when no liters sensor is available the value falls back to percent.

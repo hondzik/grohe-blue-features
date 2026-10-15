@@ -2,7 +2,7 @@ import { LitElement, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { groheBlueCombinedFeatureStyles } from './grohe-blue-combined-feature.styles';
 import setupCustomlocalize from './localize';
-import { computeLevelDisplay, DEFAULT_ICONS, getUnit, kindConfig, resolveCssColor } from './utils/level-display';
+import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, DEFAULT_ICONS, getUnit, kindConfig, resolveCssColor } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
 import type { LevelKind } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
@@ -54,11 +54,13 @@ export class GroheBlueCombinedFeature extends LitElement {
   /** The first item renders `edge bar`, the second `bar edge`, so the edges sit on the outside. */
   private renderItem(hass: HomeAssistant, kind: LevelKind, first: boolean): TemplateResult {
     const cfg = kindConfig(this.config, kind);
-    const display = computeLevelDisplay(resolveLevelSources(hass, this.context?.entity_id, kind, cfg), getUnit(this.config), hass.locale?.language);
+    const sources = resolveLevelSources(hass, this.context?.entity_id, kind, cfg);
+    const display = computeLevelDisplay(sources, getUnit(this.config), hass.locale?.language);
+    const title = computeLevelTitle(kind === 'co2' ? CO2_LABEL : setupCustomlocalize(hass)('feature.name.filter'), sources, hass.locale?.language);
     const edge = html`<div class="edge ${first ? 'first' : 'second'}">
       ${this.config?.edge_content === 'value' ? display.text : html`<ha-icon icon=${cfg.icon?.trim() || DEFAULT_ICONS[kind]}></ha-icon>`}
     </div>`;
-    const bar = html`<div class="bar"><div class="level" style="width: ${display.percent}%;"></div></div>`;
+    const bar = html`<div class="bar" title=${title}><div class="level" style="width: ${display.percent}%;"></div></div>`;
 
     return html` <div class="item${display.available ? '' : ' unavailable'}" style="--level-color: ${resolveCssColor(cfg.color, kind)}">${first ? edge : bar} ${first ? bar : edge}</div> `;
   }
@@ -71,7 +73,7 @@ export class GroheBlueCombinedFeature extends LitElement {
 window.customCardFeatures ||= [];
 window.customCardFeatures.push({
   type: 'grohe-blue-combined-feature',
-  name: 'Grohe Blue CO2 + filter level',
+  name: 'Grohe Blue CO₂ + filter level',
   isSupported: (hass, context) => isLevelSupported(hass, context.entity_id, 'co2'),
   configurable: true,
 });

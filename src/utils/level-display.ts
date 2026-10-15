@@ -68,3 +68,15 @@ export function computeLevelDisplay(sources: LevelSources, unit: GroheLevelUnit,
   if (rawPercent === undefined) return { percent, text: '–', available: false };
   return { percent, text: `${formatNumber(rawPercent, language)} %`, available: true };
 }
+
+/** Native `title` tooltips are plain text, so CO2 uses the Unicode subscript two. */
+export const CO2_LABEL = 'CO₂';
+
+/** Tooltip like `CO₂: 98% / 55l`; always shows both percent and liters, whatever unit the feature displays. */
+export function computeLevelTitle(name: string, sources: LevelSources, language?: string): string {
+  const percent = sources.percent?.value;
+  const liters = sources.liters?.value;
+  const parts = [percent === undefined ? '–' : `${formatNumber(percent, language)} %`];
+  if (liters !== undefined) parts.push(`${formatNumber(liters, language)} l`);
+  return `${name}: ${parts.join(' / ')}`;
+}

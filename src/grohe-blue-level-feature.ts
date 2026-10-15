@@ -2,7 +2,7 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { groheBlueLevelFeatureStyles } from './grohe-blue-level-feature.styles';
 import setupCustomlocalize from './localize';
-import { computeLevelDisplay, getUnit, getValuePosition, resolveCssColor, resolveIcon } from './utils/level-display';
+import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getUnit, getValuePosition, resolveCssColor, resolveIcon } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
 import type { LevelKind, LevelSources } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
@@ -57,7 +57,9 @@ export abstract class GroheBlueLevelFeature extends LitElement {
     return html`
       <div class="level-row${display.available ? '' : ' unavailable'}" style="--level-color: ${resolveCssColor(this.config?.color, this.kind)}">
         ${icon ? html`<ha-icon icon=${icon}></ha-icon>` : nothing} ${position === 'left' ? value : nothing}
-        <div class="bar"><div class="level" style="width: ${display.percent}%;"></div></div>
+        <div class="bar" title=${computeLevelTitle(this.kind === 'co2' ? CO2_LABEL : setupCustomlocalize(this.hass)('feature.name.filter'), this.sources, this.hass.locale?.language)}>
+          <div class="level" style="width: ${display.percent}%;"></div>
+        </div>
         ${position === 'right' ? value : nothing}
       </div>
     `;
@@ -98,7 +100,7 @@ window.customCardFeatures ||= [];
 window.customCardFeatures.push(
   {
     type: 'grohe-blue-co2-feature',
-    name: 'Grohe Blue CO2 level',
+    name: 'Grohe Blue CO₂ level',
     isSupported: (hass, context) => isLevelSupported(hass, context.entity_id, 'co2'),
     configurable: true,
   },

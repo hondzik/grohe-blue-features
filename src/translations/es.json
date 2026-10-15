@@ -40,7 +40,7 @@
       "value": "Valor"
     },
     "sections": {
-      "co2": "CO2",
+      "co2": "CO₂",
       "filter": "Filtro"
     },
     "order": {
@@ -49,6 +49,10 @@
     }
   },
   "feature": {
-    "unsupported": "Función no compatible"
+    "unsupported": "Función no compatible",
+    "name": {
+      "co2": "CO₂",
+      "filter": "Filtro"
+    }
   }
 }

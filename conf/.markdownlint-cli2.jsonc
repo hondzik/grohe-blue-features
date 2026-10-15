@@ -9,7 +9,9 @@
     "MD024": { "siblings_only": true },
     // force "compact" (single-space pipe padding, no visual column alignment) — tables with a
     // long free-text description column can't satisfy "aligned" without absurd padding
-    "MD060": { "style": "compact" }
+    "MD060": { "style": "compact" },
+    // <sub> is used for the subscript in CO<sub>2</sub>
+    "MD033": { "allowed_elements": ["sub"] }
   },
   "globs": ["README.md"]
 }

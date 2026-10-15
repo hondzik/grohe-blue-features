@@ -40,7 +40,7 @@
       "value": "Hodnota"
     },
     "sections": {
-      "co2": "CO2",
+      "co2": "CO₂",
       "filter": "Filtr"
     },
     "order": {
@@ -49,6 +49,10 @@
     }
   },
   "feature": {
-    "unsupported": "Nepodporováno"
+    "unsupported": "Nepodporováno",
+    "name": {
+      "co2": "CO₂",
+      "filter": "Filtr"
+    }
   }
 }

@@ -40,7 +40,7 @@
       "value": "Érték"
     },
     "sections": {
-      "co2": "CO2",
+      "co2": "CO₂",
       "filter": "Szűrő"
     },
     "order": {
@@ -49,6 +49,10 @@
     }
   },
   "feature": {
-    "unsupported": "Nem támogatott funkció"
+    "unsupported": "Nem támogatott funkció",
+    "name": {
+      "co2": "CO₂",
+      "filter": "Szűrő"
+    }
   }
 }

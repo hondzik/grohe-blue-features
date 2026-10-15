@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeLevelDisplay, getBoolConfigVal, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
+import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getBoolConfigVal, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
 
 describe('config helpers', () => {
   it('getBoolConfigVal uses the default when unset', () => {
@@ -78,5 +78,18 @@ describe('kindConfig', () => {
 
   it('tolerates a missing config', () => {
     expect(kindConfig(undefined, 'co2').color).toBeUndefined();
+  });
+});
+
+describe('computeLevelTitle', () => {
+  it('shows percent and liters regardless of the displayed unit', () => {
+    const sources = { percent: { origin: 'auto' as const, value: 98 }, liters: { origin: 'auto' as const, value: 55 } };
+    expect(computeLevelTitle(CO2_LABEL, sources, 'en')).toBe('CO₂: 98 % / 55 l');
+    expect(computeLevelTitle('Filter', sources, 'en')).toBe('Filter: 98 % / 55 l');
+  });
+
+  it('omits liters when unavailable and shows a dash for a missing percentage', () => {
+    expect(computeLevelTitle('Filter', { percent: { origin: 'auto', value: 40 } }, 'en')).toBe('Filter: 40 %');
+    expect(computeLevelTitle('Filter', { liters: { origin: 'auto', value: 12 } }, 'en')).toBe('Filter: – / 12 l');
   });
 });
