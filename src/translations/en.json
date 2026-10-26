@@ -45,6 +45,14 @@
     "order": {
       "label": "Order",
       "description": "Which bar comes first (left)."
+    },
+    "tap_action": {
+      "label": "Tap action",
+      "description": "What happens when you tap the bar. More info opens the sensor in the selected unit."
+    },
+    "hold_reset": {
+      "label": "Reset on hold",
+      "description": "Long-press the bar to reset the counter after replacing the CO₂ cylinder or the filter. Asks for confirmation."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filter"
+    },
+    "reset_confirm": {
+      "co2": "Reset the CO₂ counter? Do this only after replacing the CO₂ cylinder.",
+      "filter": "Reset the filter counter? Do this only after replacing the filter."
     }
   }
 }

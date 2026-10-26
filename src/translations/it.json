@@ -45,6 +45,14 @@
     "order": {
       "label": "Ordine",
       "description": "Quale barra viene per prima (a sinistra)."
+    },
+    "tap_action": {
+      "label": "Azione al tocco",
+      "description": "Cosa succede toccando la barra. Più informazioni apre il sensore nell’unità selezionata."
+    },
+    "hold_reset": {
+      "label": "Azzera tenendo premuto",
+      "description": "Tieni premuta la barra per azzerare il contatore dopo aver sostituito la bombola di CO₂ o il filtro. Richiede conferma."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtro"
+    },
+    "reset_confirm": {
+      "co2": "Azzerare il contatore della CO₂? Solo dopo aver sostituito la bombola di CO₂.",
+      "filter": "Azzerare il contatore del filtro? Solo dopo aver sostituito il filtro."
     }
   }
 }

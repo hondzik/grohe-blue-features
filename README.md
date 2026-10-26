@@ -22,6 +22,7 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 - [Usage](#usage)
 - [Configuration options](#configuration-options)
 - [How the sensors are found](#how-the-sensors-are-found)
+- [Tap and hold actions](#tap-and-hold-actions)
 - [Using the visual editor](#using-the-visual-editor)
 - [Troubleshooting](#troubleshooting)
 - [Translations](#translations)
@@ -78,6 +79,7 @@ features:
 | `co2_color` / `filter_color` | string | `blue` / `green` | Bar colors (palette name or CSS color). |
 | `co2_icon` / `filter_icon` | string | feature default | Custom icons. |
 | `co2_entity` / `co2_liters_entity` / `filter_entity` / `filter_liters_entity` | string | auto | Sensor overrides. |
+| `tap_action` / `hold_reset` | | `more-info` / `false` | Same as for the single features, applied to each bar. |
 
 ```yaml
 features:
@@ -124,6 +126,8 @@ Options of the CO<sub>2</sub> and filter features (the combined feature has its 
 | `icon` | string | feature default | Custom icon, e.g. `mdi:gas-cylinder`. Empty means the default icon. |
 | `entity` | string | auto | Percentage sensor override. |
 | `liters_entity` | string | auto | Liters sensor override. |
+| `tap_action` | action | `more-info` | Action on tap, see [Tap and hold actions](#tap-and-hold-actions). |
+| `hold_reset` | boolean | `false` | Long-press resets the counter, see [Tap and hold actions](#tap-and-hold-actions). |
 
 ## How the sensors are found
 
@@ -137,6 +141,24 @@ You don't have to configure any entity. The feature looks at the device of the T
 If an entity was renamed, the sensors are still matched by the words `co2` / `filter` in the entity id or name together with the unit (`%` or `L`). In `liter` mode the bar still uses the percentage sensor; when no liters sensor is available the value falls back to percent.
 
 Use `entity` / `liters_entity` to override the automatic choice.
+
+## Tap and hold actions
+
+The whole row (icon, value and bar) is clickable; in the combined feature each half acts on its own sensor.
+
+- **Tap** runs `tap_action`. The default `more-info` opens the sensor in the displayed unit: the liters sensor (`*_total`) when liters are shown, otherwise the percentage sensor (also when no liters sensor exists). Any Home Assistant action works (`navigate`, `perform-action`, `none`, …), including `confirmation`.
+- **Hold** (long-press, 0.5 s) with `hold_reset: true` presses the integration's reset button (`button.*_reset_co2` / `button.*_reset_filter`) after a confirmation dialog. Use it after replacing the CO<sub>2</sub> cylinder or the filter. Off by default.
+- The bars are keyboard accessible (Tab, Enter / Space) and clicks don't trigger the Tile card's own action.
+
+```yaml
+features:
+  - type: custom:grohe-blue-co2-feature
+    unit: liter
+    hold_reset: true
+    tap_action:
+      action: navigate
+      navigation_path: /dashboard-kitchen/grohe
+```
 
 ## Using the visual editor
 

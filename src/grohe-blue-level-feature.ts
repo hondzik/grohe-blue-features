@@ -2,8 +2,10 @@ import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { groheBlueLevelFeatureStyles } from './grohe-blue-level-feature.styles';
 import setupCustomlocalize from './localize';
+import { HoldTapHandler, isInteractive, levelActionCallbacks } from './utils/hold-tap';
 import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getUnit, getValuePosition, resolveCssColor, resolveIcon } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
+import type { HoldTapCallbacks } from './utils/hold-tap';
 import type { LevelKind, LevelSources } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
@@ -17,6 +19,22 @@ export abstract class GroheBlueLevelFeature extends LitElement {
   @property({ attribute: false }) context?: LovelaceCardFeatureContext;
 
   protected abstract readonly kind: LevelKind;
+
+  private readonly _actions = new HoldTapHandler(() => this._actionCallbacks());
+
+  private _actionCallbacks(): HoldTapCallbacks {
+    if (!this.hass) return {};
+    return levelActionCallbacks({
+      host: this,
+      hass: this.hass,
+      contextEntityId: this.context?.entity_id,
+      kind: this.kind,
+      sources: this.sources,
+      unit: getUnit(this.config),
+      tapAction: this.config?.tap_action,
+      holdReset: this.config?.hold_reset,
+    });
+  }
 
   get stateObj(): HassEntity | undefined {
     return this.context?.entity_id ? this.hass?.states[this.context.entity_id] : undefined;
@@ -53,11 +71,27 @@ export abstract class GroheBlueLevelFeature extends LitElement {
     const position = getValuePosition(this.config);
     const icon = resolveIcon(this.config, this.kind);
     const value = html`<div class="value ${position}">${display.text}</div>`;
+    const title = computeLevelTitle(this.kind === 'co2' ? CO2_LABEL : setupCustomlocalize(this.hass)('feature.name.filter'), this.sources, this.hass.locale?.language);
+    const interactive = isInteractive(this._actionCallbacks());
+    const h = this._actions;
 
     return html`
-      <div class="level-row${display.available ? '' : ' unavailable'}" style="--level-color: ${resolveCssColor(this.config?.color, this.kind)}">
+      <div
+        class="level-row${display.available ? '' : ' unavailable'}${interactive ? ' interactive' : ''}"
+        style="--level-color: ${resolveCssColor(this.config?.color, this.kind)}"
+        role=${interactive ? 'button' : nothing}
+        tabindex=${interactive ? '0' : nothing}
+        aria-label=${title}
+        @pointerdown=${h.onPointerDown}
+        @pointerup=${h.onPointerUp}
+        @pointerleave=${h.onPointerCancel}
+        @pointercancel=${h.onPointerCancel}
+        @click=${h.onClick}
+        @contextmenu=${h.onContextMenu}
+        @keydown=${h.onKeyDown}
+      >
         ${icon ? html`<ha-icon icon=${icon}></ha-icon>` : nothing} ${position === 'left' ? value : nothing}
-        <div class="bar" title=${computeLevelTitle(this.kind === 'co2' ? CO2_LABEL : setupCustomlocalize(this.hass)('feature.name.filter'), this.sources, this.hass.locale?.language)}>
+        <div class="bar" title=${title}>
           <div class="level" style="width: ${display.percent}%;"></div>
         </div>
         ${position === 'right' ? value : nothing}

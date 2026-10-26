@@ -45,6 +45,14 @@
     "order": {
       "label": "Volgorde",
       "description": "Welke balk eerst komt (links)."
+    },
+    "tap_action": {
+      "label": "Tikactie",
+      "description": "Wat er gebeurt als je op de balk tikt. Meer info opent de sensor in de gekozen eenheid."
+    },
+    "hold_reset": {
+      "label": "Resetten door vasthouden",
+      "description": "Houd de balk lang ingedrukt om de teller te resetten na het vervangen van de CO₂-cilinder of het filter. Vraagt om bevestiging."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filter"
+    },
+    "reset_confirm": {
+      "co2": "CO₂-teller resetten? Alleen na het vervangen van de CO₂-cilinder.",
+      "filter": "Filterteller resetten? Alleen na het vervangen van het filter."
     }
   }
 }

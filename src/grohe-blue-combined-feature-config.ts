@@ -1,5 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { renderActionOptions } from './action-options-editor';
 import { groheBlueLevelFeatureConfigStyles } from './grohe-blue-level-feature-config.styles';
 import setupCustomlocalize from './localize';
 import { DEFAULT_COLORS, DEFAULT_ICONS, getEdgeContent } from './utils/level-display';
@@ -47,6 +48,7 @@ export class GroheBlueCombinedFeatureConfigEditor extends LitElement {
         )}
       </div>
       <div class="field">${this.renderSelect('order', this.config.order ?? 'co2_filter', orderOptions, 'editor.order', localize)}</div>
+      ${renderActionOptions(this.hass, this.config, localize, (key, value) => this._setKey(key, value))}
       ${(this.config.order === 'filter_co2' ? [...LEVEL_KINDS].reverse() : LEVEL_KINDS).map((kind) => this.renderKind(kind, localize))}
     `;
   }
@@ -145,7 +147,7 @@ export class GroheBlueCombinedFeatureConfigEditor extends LitElement {
     this._setKey(key, (ev.detail?.value as string | undefined) || undefined);
   }
 
-  private _setKey(key: ConfigKey, value: string | undefined) {
+  private _setKey(key: ConfigKey, value: unknown) {
     const newConfig: Record<string, unknown> = { ...this.config };
     if (value === undefined) {
       delete newConfig[key];

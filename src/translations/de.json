@@ -45,6 +45,14 @@
     "order": {
       "label": "Reihenfolge",
       "description": "Welche Anzeige zuerst (links) steht."
+    },
+    "tap_action": {
+      "label": "Tipp-Aktion",
+      "description": "Was beim Tippen auf die Anzeige passiert. Weitere Infos öffnet den Sensor in der gewählten Einheit."
+    },
+    "hold_reset": {
+      "label": "Zurücksetzen durch Halten",
+      "description": "Langes Drücken der Anzeige setzt den Zähler nach dem Wechsel der CO₂-Flasche oder des Filters zurück. Mit Bestätigung."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filter"
+    },
+    "reset_confirm": {
+      "co2": "CO₂-Zähler zurücksetzen? Nur nach dem Wechsel der CO₂-Flasche.",
+      "filter": "Filterzähler zurücksetzen? Nur nach dem Filterwechsel."
     }
   }
 }

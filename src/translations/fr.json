@@ -45,6 +45,14 @@
     "order": {
       "label": "Ordre",
       "description": "Quelle barre vient en premier (à gauche)."
+    },
+    "tap_action": {
+      "label": "Action au toucher",
+      "description": "Ce qui se passe lorsque vous touchez la barre. Plus d’infos ouvre le capteur dans l’unité choisie."
+    },
+    "hold_reset": {
+      "label": "Réinitialiser par appui long",
+      "description": "Un appui long sur la barre réinitialise le compteur après le remplacement de la bouteille de CO₂ ou du filtre. Demande une confirmation."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtre"
+    },
+    "reset_confirm": {
+      "co2": "Réinitialiser le compteur de CO₂ ? Uniquement après le remplacement de la bouteille de CO₂.",
+      "filter": "Réinitialiser le compteur du filtre ? Uniquement après le remplacement du filtre."
     }
   }
 }

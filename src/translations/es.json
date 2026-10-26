@@ -45,6 +45,14 @@
     "order": {
       "label": "Orden",
       "description": "Qué barra va primero (a la izquierda)."
+    },
+    "tap_action": {
+      "label": "Acción al tocar",
+      "description": "Qué ocurre al tocar la barra. Más información abre el sensor en la unidad seleccionada."
+    },
+    "hold_reset": {
+      "label": "Restablecer al mantener",
+      "description": "Mantén pulsada la barra para restablecer el contador tras cambiar la bombona de CO₂ o el filtro. Pide confirmación."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtro"
+    },
+    "reset_confirm": {
+      "co2": "¿Restablecer el contador de CO₂? Hazlo solo tras cambiar la bombona de CO₂.",
+      "filter": "¿Restablecer el contador del filtro? Hazlo solo tras cambiar el filtro."
     }
   }
 }

@@ -54,4 +54,23 @@ export const groheBlueLevelFeatureStyles = css`
   .value.left {
     text-align: left;
   }
+
+  /* clickable bars: pointer, hover highlight, keyboard focus, no text selection / callout on long-press */
+  .interactive {
+    cursor: pointer;
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
+    touch-action: manipulation;
+  }
+
+  .interactive:hover .bar {
+    filter: brightness(1.2);
+  }
+
+  .level-row:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+    border-radius: 8px;
+  }
 `;

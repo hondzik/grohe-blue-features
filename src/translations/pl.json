@@ -45,6 +45,14 @@
     "order": {
       "label": "Kolejność",
       "description": "Który pasek jest pierwszy (po lewej)."
+    },
+    "tap_action": {
+      "label": "Akcja po dotknięciu",
+      "description": "Co się stanie po dotknięciu paska. Więcej informacji otwiera czujnik w wybranej jednostce."
+    },
+    "hold_reset": {
+      "label": "Reset przytrzymaniem",
+      "description": "Przytrzymaj pasek, aby wyzerować licznik po wymianie butli CO₂ lub filtra. Wymaga potwierdzenia."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtr"
+    },
+    "reset_confirm": {
+      "co2": "Wyzerować licznik CO₂? Tylko po wymianie butli CO₂.",
+      "filter": "Wyzerować licznik filtra? Tylko po wymianie filtra."
     }
   }
 }

@@ -45,6 +45,14 @@
     "order": {
       "label": "Pořadí",
       "description": "Který ukazatel je první (vlevo)."
+    },
+    "tap_action": {
+      "label": "Akce při klepnutí",
+      "description": "Co se stane po klepnutí na ukazatel. Více informací otevře senzor ve zvolené jednotce."
+    },
+    "hold_reset": {
+      "label": "Reset podržením",
+      "description": "Dlouhým podržením ukazatele vynulujete počítadlo po výměně CO₂ bombičky nebo filtru. Vyžaduje potvrzení."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtr"
+    },
+    "reset_confirm": {
+      "co2": "Vynulovat počítadlo CO₂? Udělejte to jen po výměně CO₂ bombičky.",
+      "filter": "Vynulovat počítadlo filtru? Udělejte to jen po výměně filtru."
     }
   }
 }

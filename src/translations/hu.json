@@ -45,6 +45,14 @@
     "order": {
       "label": "Sorrend",
       "description": "Melyik sáv legyen az első (bal oldalon)."
+    },
+    "tap_action": {
+      "label": "Koppintási művelet",
+      "description": "Mi történjen a sávra koppintáskor. A további információ a kiválasztott mértékegységű érzékelőt nyitja meg."
+    },
+    "hold_reset": {
+      "label": "Visszaállítás nyomva tartással",
+      "description": "A sáv hosszú megnyomásával nullázhatja a számlálót a CO₂-palack vagy a szűrő cseréje után. Megerősítést kér."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Szűrő"
+    },
+    "reset_confirm": {
+      "co2": "Nullázza a CO₂-számlálót? Csak a CO₂-palack cseréje után.",
+      "filter": "Nullázza a szűrőszámlálót? Csak a szűrő cseréje után."
     }
   }
 }

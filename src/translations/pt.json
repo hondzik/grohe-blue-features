@@ -45,6 +45,14 @@
     "order": {
       "label": "Ordem",
       "description": "Qual barra vem primeiro (à esquerda)."
+    },
+    "tap_action": {
+      "label": "Ação ao tocar",
+      "description": "O que acontece ao tocar na barra. Mais informações abre o sensor na unidade selecionada."
+    },
+    "hold_reset": {
+      "label": "Repor ao manter premido",
+      "description": "Mantenha a barra premida para repor o contador após substituir a garrafa de CO₂ ou o filtro. Pede confirmação."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filtro"
+    },
+    "reset_confirm": {
+      "co2": "Repor o contador de CO₂? Apenas após substituir a garrafa de CO₂.",
+      "filter": "Repor o contador do filtro? Apenas após substituir o filtro."
     }
   }
 }

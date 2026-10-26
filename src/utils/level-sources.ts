@@ -121,3 +121,16 @@ export function resolveLevelSources(hass: HomeAssistant, entityId: string | unde
     liters: config?.liters_entity ? toSource(hass, config.liters_entity, 'manual') : toSource(hass, auto.liters, 'auto'),
   };
 }
+
+/** The integration's reset button for the given kind (`button.*_reset_co2` / `button.*_reset_filter`) on the tile entity's device. */
+export function discoverResetButton(hass: HomeAssistant, entityId: string | undefined, kind: LevelKind): string | undefined {
+  const registry = entityRegistry(hass);
+  const deviceId = entityId ? registry?.[entityId]?.device_id : undefined;
+  if (!registry || !deviceId) return undefined;
+  const word = KIND_WORD[kind];
+  const buttons = Object.values(registry)
+    .filter((entry) => entry.device_id === deviceId && entry.entity_id.startsWith('button.'))
+    .map((entry) => entry.entity_id)
+    .sort();
+  return buttons.find((id) => objectId(id).endsWith(`_reset_${word}`)) ?? buttons.find((id) => objectId(id).includes('reset') && objectId(id).includes(word));
+}

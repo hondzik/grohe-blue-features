@@ -45,6 +45,14 @@
     "order": {
       "label": "Ordning",
       "description": "Vilket fält som kommer först (till vänster)."
+    },
+    "tap_action": {
+      "label": "Tryckåtgärd",
+      "description": "Vad som händer när du trycker på fältet. Mer info öppnar sensorn i vald enhet."
+    },
+    "hold_reset": {
+      "label": "Återställ genom att hålla",
+      "description": "Håll ned fältet för att nollställa räknaren efter byte av CO₂-cylinder eller filter. Kräver bekräftelse."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filter"
+    },
+    "reset_confirm": {
+      "co2": "Nollställa CO₂-räknaren? Endast efter byte av CO₂-cylindern.",
+      "filter": "Nollställa filterräknaren? Endast efter byte av filtret."
     }
   }
 }

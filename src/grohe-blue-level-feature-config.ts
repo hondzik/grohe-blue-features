@@ -1,5 +1,6 @@
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
+import { renderActionOptions } from './action-options-editor';
 import { groheBlueLevelFeatureConfigStyles } from './grohe-blue-level-feature-config.styles';
 import setupCustomlocalize from './localize';
 import { DEFAULT_COLORS, DEFAULT_ICONS, getBoolConfigVal, getUnit, getValuePosition } from './utils/level-display';
@@ -120,8 +121,19 @@ export abstract class GroheBlueLevelFeatureConfigEditor extends LitElement {
               `
             : nothing
         }
+        ${renderActionOptions(this.hass, this.config, localize, (key, value) => this._setOption(key, value))}
       </div>
     `;
+  }
+
+  private _setOption(key: keyof GroheActionOptions, value: unknown) {
+    const newConfig: Record<string, unknown> = { ...this.config };
+    if (value === undefined) {
+      delete newConfig[key];
+    } else {
+      newConfig[key] = value;
+    }
+    this._updateConfig(newConfig as Partial<GroheBlueFeatureConfig>);
   }
 
   private renderSourceRow(field: SourceField, autoEntity: string | undefined, label: string, localize: (key: string) => string): TemplateResult {

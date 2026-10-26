@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { discoverLevelEntities, isLevelSupported, resolveLevelSources } from './level-sources';
+import { discoverLevelEntities, discoverResetButton, isLevelSupported, resolveLevelSources } from './level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
 
 type Fake = { id: string; state: string; unit?: string; name?: string; deviceId?: string; platform?: string };
@@ -107,5 +107,22 @@ describe('resolveLevelSources', () => {
 
   it('returns no sources when nothing is found', () => {
     expect(resolveLevelSources(hass, 'sensor.nope', 'co2', undefined)).toEqual({ percent: undefined, liters: undefined });
+  });
+});
+
+describe('discoverResetButton', () => {
+  const tile = `${PREFIX}_cycles_still`;
+
+  it('finds the reset button of the kind on the same device', () => {
+    const hass = makeHass([...grohe, { id: 'button.kitchen_my_grohe_blue_home_reset_filter', state: 'unknown' }]);
+    expect(discoverResetButton(hass, tile, 'co2')).toBe('button.kitchen_my_grohe_blue_home_reset_co2');
+    expect(discoverResetButton(hass, tile, 'filter')).toBe('button.kitchen_my_grohe_blue_home_reset_filter');
+  });
+
+  it('returns nothing when the button is missing or the device is unknown', () => {
+    const hass = makeHass(grohe);
+    expect(discoverResetButton(hass, tile, 'filter')).toBeUndefined();
+    expect(discoverResetButton(hass, 'sensor.nope', 'co2')).toBeUndefined();
+    expect(discoverResetButton(hass, 'sensor.other_remaining_co2', 'co2')).toBeUndefined();
   });
 });

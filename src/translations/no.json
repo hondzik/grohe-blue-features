@@ -45,6 +45,14 @@
     "order": {
       "label": "Rekkefølge",
       "description": "Hvilken linje som kommer først (til venstre)."
+    },
+    "tap_action": {
+      "label": "Trykkhandling",
+      "description": "Hva som skjer når du trykker på linjen. Mer info åpner sensoren i valgt enhet."
+    },
+    "hold_reset": {
+      "label": "Tilbakestill ved å holde",
+      "description": "Hold linjen inne for å nullstille telleren etter bytte av CO₂-patron eller filter. Ber om bekreftelse."
     }
   },
   "feature": {
@@ -52,6 +60,10 @@
     "name": {
       "co2": "CO₂",
       "filter": "Filter"
+    },
+    "reset_confirm": {
+      "co2": "Nullstille CO₂-telleren? Bare etter bytte av CO₂-patronen.",
+      "filter": "Nullstille filtertelleren? Bare etter bytte av filteret."
     }
   }
 }
