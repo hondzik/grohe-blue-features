@@ -36,6 +36,8 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 | Grohe Blue filter level | `custom:grohe-blue-filter-feature` | green | `mdi:air-filter` |
 | Grohe Blue CO<sub>2</sub> + filter level | `custom:grohe-blue-combined-feature` | blue / green | as above |
 
+Hovering a bar shows a tooltip with both values, e.g. `CO₂: 98 % / 55 l` or `Filter: 100 % / 1997 l`, whichever unit is displayed.
+
 The CO<sub>2</sub> and filter features share the same [options](#configuration-options): value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
 
 ### CO<sub>2</sub>
@@ -68,13 +70,13 @@ features:
 
 ### CO<sub>2</sub> + filter (combined)
 
-`grohe-blue-combined-feature` shows both bars side by side in a single row. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped.
+`grohe-blue-combined-feature` shows both bars side by side in a single row. The outer edge cells hold either the **icon** or the **value**, and the order of the bars can be swapped. The right bar is anchored to the right edge, so both bars drain towards the outside and the empty part grows from the middle of the card.
 
 ![Combined feature](docs/images/combined-icons.png)
 
 | Option | Type | Default | Description |
 | ------ | ---- | ------- | ----------- |
-| `edge_content` | `icon` \| `percent` \| `liter` | `icon` | What is shown at the outer edge of each bar: the icon, or the value in percent / liters. Bars always follow the percentage. |
+| `edge_content` | `icon` \| `percent` \| `liter` | `icon` | What is shown at the outer edge of each bar: the icon, or the value in percent / liters. Bars always follow the percentage. The older `edge_content: value` + `unit` form still works. |
 | `order` | `co2_filter` \| `filter_co2` | `co2_filter` | Which bar comes first (left). |
 | `co2_color` / `filter_color` | string | `blue` / `green` | Bar colors (palette name or CSS color). |
 | `co2_icon` / `filter_icon` | string | feature default | Custom icons. |
@@ -138,6 +140,8 @@ You don't have to configure any entity. The feature looks at the device of the T
 | CO<sub>2</sub> | `*_remaining_co2` | `*_remaining_co2_total` |
 | Filter | `*_remaining_filter` (falls back to `*_remaining_filter_app`) | `*_remaining_filter_total` |
 
+Entity ids with the numeric suffix Home Assistant adds to duplicates (e.g. `sensor.…_remaining_co2_2` after re-adding the device) are matched the same way, and so are the reset buttons (`button.*_reset_co2_2`).
+
 If an entity was renamed, the sensors are still matched by the words `co2` / `filter` in the entity id or name together with the unit (`%` or `L`). In `liter` mode the bar still uses the percentage sensor; when no liters sensor is available the value falls back to percent.
 
 Use `entity` / `liters_entity` to override the automatic choice.
@@ -148,6 +152,7 @@ The whole row (icon, value and bar) is clickable; in the combined feature each h
 
 - **Tap** runs `tap_action`. The default `more-info` opens the sensor in the displayed unit: the liters sensor (`*_total`) when liters are shown, otherwise the percentage sensor (also when no liters sensor exists). Any Home Assistant action works (`navigate`, `perform-action`, `none`, …), including `confirmation`.
 - **Hold** (long-press, 0.5 s) with `hold_reset: true` presses the integration's reset button (`button.*_reset_co2` / `button.*_reset_filter`) after a confirmation dialog. Use it after replacing the CO<sub>2</sub> cylinder or the filter. Off by default.
+- **After a reset** the feature asks Home Assistant to refresh the level sensors (`homeassistant.update_entity`, 5 s and 60 s after the press). The Grohe cloud recalculates the levels only with the device's next measurement, so the new value can still take a while to appear; the confirmation dialog says so.
 - The bars are keyboard accessible (Tab, Enter / Space) and clicks don't trigger the Tile card's own action.
 
 ```yaml
@@ -162,7 +167,7 @@ features:
 
 ## Using the visual editor
 
-Use the pencil icon next to the feature in the Tile card editor. The dialog shows which sensors are in use (**auto** / **manual** chip) and lets you change the unit, color, value position and icon.
+Use the pencil icon next to the feature in the Tile card editor. The dialog shows which sensors are in use (**auto** / **manual** chip) and lets you change the unit, color, value position, icon, tap action and reset on hold. The combined feature's editor has the edge content (icon / percent / liters) and order at the top, followed by a section per bar (sensors, color, icon).
 
 ![Visual editor](docs/images/co2-editor.png)
 
@@ -172,6 +177,8 @@ Use the pencil icon next to the feature in the Tile card editor. The dialog show
 - **The bar is empty and the value shows "–"** — the percentage sensor is unavailable. Check the sensor in Developer tools → States.
 - **The value is shown in percent although `unit: liter` is set** — no liters sensor was found; set `liters_entity` manually.
 - **Bar spacing** — the feature is a single row; no `grid_options.rows` change is needed.
+- **Nothing changes after a reset** — the reset button was pressed (check its logbook), but the Grohe cloud updates the levels only with the device's next measurement (see the `Last measurement update` sensor). Wait for it; calling `homeassistant.update_entity` earlier doesn't help.
+- **Hold does nothing** — `hold_reset` is off, or the device has no `button.*_reset_co2` / `button.*_reset_filter` entity.
 
 ## Translations
 

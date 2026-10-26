@@ -62,8 +62,8 @@
       "filter": "Filtro"
     },
     "reset_confirm": {
-      "co2": "Azzerare il contatore della CO₂? Solo dopo aver sostituito la bombola di CO₂.",
-      "filter": "Azzerare il contatore del filtro? Solo dopo aver sostituito il filtro."
+      "co2": "Azzerare il contatore della CO₂? Solo dopo aver sostituito la bombola di CO₂. Il nuovo valore compare solo dopo un po’, quando il dispositivo invia la misurazione successiva al cloud Grohe.",
+      "filter": "Azzerare il contatore del filtro? Solo dopo aver sostituito il filtro. Il nuovo valore compare solo dopo un po’, quando il dispositivo invia la misurazione successiva al cloud Grohe."
     }
   }
 }

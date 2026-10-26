@@ -62,8 +62,8 @@
       "filter": "Filter"
     },
     "reset_confirm": {
-      "co2": "CO₂-Zähler zurücksetzen? Nur nach dem Wechsel der CO₂-Flasche.",
-      "filter": "Filterzähler zurücksetzen? Nur nach dem Filterwechsel."
+      "co2": "CO₂-Zähler zurücksetzen? Nur nach dem Wechsel der CO₂-Flasche. Der neue Wert erscheint erst nach einiger Zeit, sobald das Gerät seine nächste Messung an die Grohe-Cloud meldet.",
+      "filter": "Filterzähler zurücksetzen? Nur nach dem Filterwechsel. Der neue Wert erscheint erst nach einiger Zeit, sobald das Gerät seine nächste Messung an die Grohe-Cloud meldet."
     }
   }
 }

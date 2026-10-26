@@ -5,11 +5,12 @@ import setupCustomlocalize from './localize';
 import { HoldTapHandler, isInteractive, levelActionCallbacks } from './utils/hold-tap';
 import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, DEFAULT_ICONS, getEdgeContent, kindConfig, resolveCssColor } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
+import { ResetRefresher } from './utils/reset-refresher';
 import type { HoldTapCallbacks } from './utils/hold-tap';
 import type { LevelKind, LevelSources } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import './grohe-blue-combined-feature-config';
 
 @customElement('grohe-blue-combined-feature')
@@ -23,6 +24,17 @@ export class GroheBlueCombinedFeature extends LitElement {
     co2: new HoldTapHandler(() => this._actionCallbacks('co2')),
     filter: new HoldTapHandler(() => this._actionCallbacks('filter')),
   };
+
+  private readonly _refresher = new ResetRefresher(() => this.hass);
+
+  protected updated(changed: PropertyValues) {
+    if (changed.has('hass')) this._refresher.check();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._refresher.dispose();
+  }
 
   private _sources(kind: LevelKind): LevelSources {
     return this.hass ? resolveLevelSources(this.hass, this.context?.entity_id, kind, kindConfig(this.config, kind)) : {};
@@ -39,6 +51,7 @@ export class GroheBlueCombinedFeature extends LitElement {
       unit: getEdgeContent(this.config) === 'liter' ? 'liter' : 'percent',
       tapAction: this.config?.tap_action,
       holdReset: this.config?.hold_reset,
+      onReset: (button, entities) => this._refresher.arm(button, entities),
     });
   }
 

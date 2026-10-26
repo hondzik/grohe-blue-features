@@ -62,8 +62,8 @@
       "filter": "Filtr"
     },
     "reset_confirm": {
-      "co2": "Vynulovat počítadlo CO₂? Udělejte to jen po výměně CO₂ bombičky.",
-      "filter": "Vynulovat počítadlo filtru? Udělejte to jen po výměně filtru."
+      "co2": "Vynulovat počítadlo CO₂? Udělejte to jen po výměně CO₂ bombičky. Nová hodnota se zobrazí až po nějaké době, jakmile zařízení odešle do cloudu Grohe další měření.",
+      "filter": "Vynulovat počítadlo filtru? Udělejte to jen po výměně filtru. Nová hodnota se zobrazí až po nějaké době, jakmile zařízení odešle do cloudu Grohe další měření."
     }
   }
 }

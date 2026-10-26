@@ -86,6 +86,8 @@ export type LevelActionOptions = {
   unit: GroheLevelUnit;
   tapAction?: GroheActionConfig;
   holdReset?: boolean;
+  /** Called when the reset hold fires, with the reset button and the sensors to refresh once it's pressed. */
+  onReset?: (button: string, entities: Array<string | undefined>) => void;
 };
 
 function fireAction(host: HTMLElement, detail: HassActionDetail) {
@@ -98,7 +100,12 @@ export function levelActionCallbacks(options: LevelActionOptions): HoldTapCallba
   const resetButton = options.holdReset ? discoverResetButton(hass, options.contextEntityId, kind) : undefined;
   return {
     tap: isTapEnabled(tapAction) ? () => fireAction(host, buildTapAction(getActionEntity(sources, unit), tapAction)) : undefined,
-    hold: resetButton ? () => fireAction(host, buildResetAction(resetButton, setupCustomlocalize(hass)(`feature.reset_confirm.${kind}`))) : undefined,
+    hold: resetButton
+      ? () => {
+          options.onReset?.(resetButton, [sources.percent?.entityId, sources.liters?.entityId]);
+          fireAction(host, buildResetAction(resetButton, setupCustomlocalize(hass)(`feature.reset_confirm.${kind}`)));
+        }
+      : undefined,
   };
 }
 

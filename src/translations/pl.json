@@ -62,8 +62,8 @@
       "filter": "Filtr"
     },
     "reset_confirm": {
-      "co2": "Wyzerować licznik CO₂? Tylko po wymianie butli CO₂.",
-      "filter": "Wyzerować licznik filtra? Tylko po wymianie filtra."
+      "co2": "Wyzerować licznik CO₂? Tylko po wymianie butli CO₂. Nowa wartość pojawi się dopiero po pewnym czasie, gdy urządzenie wyśle kolejny pomiar do chmury Grohe.",
+      "filter": "Wyzerować licznik filtra? Tylko po wymianie filtra. Nowa wartość pojawi się dopiero po pewnym czasie, gdy urządzenie wyśle kolejny pomiar do chmury Grohe."
     }
   }
 }

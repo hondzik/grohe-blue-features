@@ -37,6 +37,11 @@ function objectId(entityId: string): string {
   return entityId.slice(entityId.indexOf('.') + 1);
 }
 
+/** Object id without the numeric suffix HA appends to duplicate entity ids (`remaining_co2_2` → `remaining_co2`). */
+function baseObjectId(entityId: string): string {
+  return objectId(entityId).replace(/_\d+$/, '');
+}
+
 function entityRegistry(hass: HomeAssistant): Record<string, EntityRegistryDisplayEntry> | undefined {
   return (hass as HassWithRegistry).entities;
 }
@@ -50,13 +55,13 @@ function isLiterSensor(entityId: string, stateObj: HassEntity | undefined): bool
   const unit = stateObj?.attributes?.unit_of_measurement;
   if (typeof unit === 'string' && unit !== '') return LITER_UNITS.has(unit);
   // unavailable sensors may have their attributes stripped, fall back to the integration's naming
-  return isUnavailable(stateObj) && objectId(entityId).endsWith('_total');
+  return isUnavailable(stateObj) && baseObjectId(entityId).endsWith('_total');
 }
 
 function isPercentSensor(entityId: string, stateObj: HassEntity | undefined): boolean {
   const unit = stateObj?.attributes?.unit_of_measurement;
   if (typeof unit === 'string' && unit !== '') return unit === '%';
-  return isUnavailable(stateObj) && !objectId(entityId).endsWith('_total');
+  return isUnavailable(stateObj) && !baseObjectId(entityId).endsWith('_total');
 }
 
 /**
@@ -64,7 +69,7 @@ function isPercentSensor(entityId: string, stateObj: HassEntity | undefined): bo
  * `entityId`.
  *
  * Entities are first matched by the integration's own naming (`*_remaining_<kind>`
- * and `*_remaining_<kind>_total`), then by looser word + unit matching so renamed or
+ * and `*_remaining_<kind>_total`, also with HA's `_2` duplicate suffix), then by looser word + unit matching so renamed or
  * localized entity ids still resolve. The Grohe app-specific variant
  * (`remaining_filter_app`) is only used when no plain percent sensor exists.
  */
@@ -83,9 +88,9 @@ export function discoverLevelEntities(hass: HomeAssistant, entityId: string | un
   const percents = candidates.filter(({ id, stateObj }) => isPercentSensor(id, stateObj));
   const liters = candidates.filter(({ id, stateObj }) => isLiterSensor(id, stateObj));
 
-  const exactPercent = percents.find(({ id }) => objectId(id).endsWith(`_remaining_${word}`));
+  const exactPercent = percents.find(({ id }) => baseObjectId(id).endsWith(`_remaining_${word}`));
   const plainPercent = percents.find(({ id }) => !objectId(id).includes('_app'));
-  const exactLiters = liters.find(({ id }) => objectId(id).endsWith(`_remaining_${word}_total`));
+  const exactLiters = liters.find(({ id }) => baseObjectId(id).endsWith(`_remaining_${word}_total`));
 
   return {
     percent: (exactPercent ?? plainPercent ?? percents[0])?.id,
@@ -132,5 +137,5 @@ export function discoverResetButton(hass: HomeAssistant, entityId: string | unde
     .filter((entry) => entry.device_id === deviceId && entry.entity_id.startsWith('button.'))
     .map((entry) => entry.entity_id)
     .sort();
-  return buttons.find((id) => objectId(id).endsWith(`_reset_${word}`)) ?? buttons.find((id) => objectId(id).includes('reset') && objectId(id).includes(word));
+  return buttons.find((id) => baseObjectId(id).endsWith(`_reset_${word}`)) ?? buttons.find((id) => objectId(id).includes('reset') && objectId(id).includes(word));
 }

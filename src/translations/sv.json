@@ -62,8 +62,8 @@
       "filter": "Filter"
     },
     "reset_confirm": {
-      "co2": "Nollställa CO₂-räknaren? Endast efter byte av CO₂-cylindern.",
-      "filter": "Nollställa filterräknaren? Endast efter byte av filtret."
+      "co2": "Nollställa CO₂-räknaren? Endast efter byte av CO₂-cylindern. Det nya värdet visas först efter en stund, när enheten skickar nästa mätning till Grohe-molnet.",
+      "filter": "Nollställa filterräknaren? Endast efter byte av filtret. Det nya värdet visas först efter en stund, när enheten skickar nästa mätning till Grohe-molnet."
     }
   }
 }

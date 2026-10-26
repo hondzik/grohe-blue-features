@@ -62,8 +62,8 @@
       "filter": "Filter"
     },
     "reset_confirm": {
-      "co2": "Nullstille CO₂-telleren? Bare etter bytte av CO₂-patronen.",
-      "filter": "Nullstille filtertelleren? Bare etter bytte av filteret."
+      "co2": "Nullstille CO₂-telleren? Bare etter bytte av CO₂-patronen. Den nye verdien vises først etter en stund, når enheten sender neste måling til Grohe-skyen.",
+      "filter": "Nullstille filtertelleren? Bare etter bytte av filteret. Den nye verdien vises først etter en stund, når enheten sender neste måling til Grohe-skyen."
     }
   }
 }

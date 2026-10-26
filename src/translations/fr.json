@@ -62,8 +62,8 @@
       "filter": "Filtre"
     },
     "reset_confirm": {
-      "co2": "Réinitialiser le compteur de CO₂ ? Uniquement après le remplacement de la bouteille de CO₂.",
-      "filter": "Réinitialiser le compteur du filtre ? Uniquement après le remplacement du filtre."
+      "co2": "Réinitialiser le compteur de CO₂ ? Uniquement après le remplacement de la bouteille de CO₂. La nouvelle valeur n’apparaît qu’après un certain temps, lorsque l’appareil envoie sa prochaine mesure au cloud Grohe.",
+      "filter": "Réinitialiser le compteur du filtre ? Uniquement après le remplacement du filtre. La nouvelle valeur n’apparaît qu’après un certain temps, lorsque l’appareil envoie sa prochaine mesure au cloud Grohe."
     }
   }
 }

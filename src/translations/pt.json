@@ -62,8 +62,8 @@
       "filter": "Filtro"
     },
     "reset_confirm": {
-      "co2": "Repor o contador de CO₂? Apenas após substituir a garrafa de CO₂.",
-      "filter": "Repor o contador do filtro? Apenas após substituir o filtro."
+      "co2": "Repor o contador de CO₂? Apenas após substituir a garrafa de CO₂. O novo valor só aparece passado algum tempo, quando o dispositivo enviar a medição seguinte para a nuvem Grohe.",
+      "filter": "Repor o contador do filtro? Apenas após substituir o filtro. O novo valor só aparece passado algum tempo, quando o dispositivo enviar a medição seguinte para a nuvem Grohe."
     }
   }
 }

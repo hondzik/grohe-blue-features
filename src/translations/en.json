@@ -62,8 +62,8 @@
       "filter": "Filter"
     },
     "reset_confirm": {
-      "co2": "Reset the CO₂ counter? Do this only after replacing the CO₂ cylinder.",
-      "filter": "Reset the filter counter? Do this only after replacing the filter."
+      "co2": "Reset the CO₂ counter? Do this only after replacing the CO₂ cylinder. The new value appears only after a while, once the device reports its next measurement to the Grohe cloud.",
+      "filter": "Reset the filter counter? Do this only after replacing the filter. The new value appears only after a while, once the device reports its next measurement to the Grohe cloud."
     }
   }
 }

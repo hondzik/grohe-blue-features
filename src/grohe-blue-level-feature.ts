@@ -5,11 +5,12 @@ import setupCustomlocalize from './localize';
 import { HoldTapHandler, isInteractive, levelActionCallbacks } from './utils/hold-tap';
 import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getUnit, getValuePosition, resolveCssColor, resolveIcon } from './utils/level-display';
 import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
+import { ResetRefresher } from './utils/reset-refresher';
 import type { HoldTapCallbacks } from './utils/hold-tap';
 import type { LevelKind, LevelSources } from './utils/level-sources';
 import type { HomeAssistant } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
-import type { CSSResultGroup, TemplateResult } from 'lit';
+import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import './grohe-blue-level-feature-config';
 
 /** Shared implementation of the CO2 and filter features; subclasses only differ in `kind`. */
@@ -21,6 +22,16 @@ export abstract class GroheBlueLevelFeature extends LitElement {
   protected abstract readonly kind: LevelKind;
 
   private readonly _actions = new HoldTapHandler(() => this._actionCallbacks());
+  private readonly _refresher = new ResetRefresher(() => this.hass);
+
+  protected updated(changed: PropertyValues) {
+    if (changed.has('hass')) this._refresher.check();
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    this._refresher.dispose();
+  }
 
   private _actionCallbacks(): HoldTapCallbacks {
     if (!this.hass) return {};
@@ -33,6 +44,7 @@ export abstract class GroheBlueLevelFeature extends LitElement {
       unit: getUnit(this.config),
       tapAction: this.config?.tap_action,
       holdReset: this.config?.hold_reset,
+      onReset: (button, entities) => this._refresher.arm(button, entities),
     });
   }
 

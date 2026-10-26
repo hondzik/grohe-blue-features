@@ -126,3 +126,27 @@ describe('discoverResetButton', () => {
     expect(discoverResetButton(hass, 'sensor.other_remaining_co2', 'co2')).toBeUndefined();
   });
 });
+
+describe('duplicate entity id suffix (_2)', () => {
+  const P = 'sensor.kitchen_my_grohe_blue_home';
+  const dup: Fake[] = [
+    { id: `${P}_cycles_still_2`, state: '10' },
+    { id: `${P}_remaining_co2_2`, state: '0', unit: '%' },
+    { id: `${P}_remaining_co2_total_2`, state: 'unavailable' },
+    { id: `${P}_remaining_filter_app_2`, state: '90', unit: '%' },
+    { id: `${P}_remaining_filter_2`, state: '100', unit: '%' },
+    { id: 'button.kitchen_my_grohe_blue_home_reset_co2_filter_2', state: 'unknown' },
+    { id: 'button.kitchen_my_grohe_blue_home_reset_co2_2', state: 'unknown' },
+  ];
+  const hass = makeHass(dup);
+  const tile = `${P}_cycles_still_2`;
+
+  it('still prefers the integration naming', () => {
+    expect(discoverLevelEntities(hass, tile, 'co2')).toEqual({ percent: `${P}_remaining_co2_2`, liters: `${P}_remaining_co2_total_2` });
+    expect(discoverLevelEntities(hass, tile, 'filter').percent).toBe(`${P}_remaining_filter_2`);
+  });
+
+  it('finds the suffixed reset button before looser matches', () => {
+    expect(discoverResetButton(hass, tile, 'co2')).toBe('button.kitchen_my_grohe_blue_home_reset_co2_2');
+  });
+});

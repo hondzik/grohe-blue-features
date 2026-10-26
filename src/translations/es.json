@@ -62,8 +62,8 @@
       "filter": "Filtro"
     },
     "reset_confirm": {
-      "co2": "¿Restablecer el contador de CO₂? Hazlo solo tras cambiar la bombona de CO₂.",
-      "filter": "¿Restablecer el contador del filtro? Hazlo solo tras cambiar el filtro."
+      "co2": "¿Restablecer el contador de CO₂? Hazlo solo tras cambiar la bombona de CO₂. El nuevo valor aparecerá pasado un tiempo, cuando el dispositivo envíe su siguiente medición a la nube de Grohe.",
+      "filter": "¿Restablecer el contador del filtro? Hazlo solo tras cambiar el filtro. El nuevo valor aparecerá pasado un tiempo, cuando el dispositivo envíe su siguiente medición a la nube de Grohe."
     }
   }
 }

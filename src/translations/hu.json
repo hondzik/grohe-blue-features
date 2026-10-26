@@ -62,8 +62,8 @@
       "filter": "Szűrő"
     },
     "reset_confirm": {
-      "co2": "Nullázza a CO₂-számlálót? Csak a CO₂-palack cseréje után.",
-      "filter": "Nullázza a szűrőszámlálót? Csak a szűrő cseréje után."
+      "co2": "Nullázza a CO₂-számlálót? Csak a CO₂-palack cseréje után. Az új érték csak egy idő után jelenik meg, amikor az eszköz elküldi a következő mérést a Grohe felhőbe.",
+      "filter": "Nullázza a szűrőszámlálót? Csak a szűrő cseréje után. Az új érték csak egy idő után jelenik meg, amikor az eszköz elküldi a következő mérést a Grohe felhőbe."
     }
   }
 }

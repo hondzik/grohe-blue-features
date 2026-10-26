@@ -62,8 +62,8 @@
       "filter": "Filter"
     },
     "reset_confirm": {
-      "co2": "CO₂-teller resetten? Alleen na het vervangen van de CO₂-cilinder.",
-      "filter": "Filterteller resetten? Alleen na het vervangen van het filter."
+      "co2": "CO₂-teller resetten? Alleen na het vervangen van de CO₂-cilinder. De nieuwe waarde verschijnt pas na een tijdje, zodra het apparaat zijn volgende meting naar de Grohe-cloud stuurt.",
+      "filter": "Filterteller resetten? Alleen na het vervangen van het filter. De nieuwe waarde verschijnt pas na een tijdje, zodra het apparaat zijn volgende meting naar de Grohe-cloud stuurt."
     }
   }
 }
