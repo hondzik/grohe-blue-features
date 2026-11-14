@@ -8,7 +8,7 @@ import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
 import { ResetRefresher } from './utils/reset-refresher';
 import type { HoldTapCallbacks } from './utils/hold-tap';
 import type { LevelKind, LevelSources } from './utils/level-sources';
-import type { HomeAssistant } from 'custom-card-helpers';
+import type { HomeAssistant, LovelaceCardFeatureConstructor, LovelaceCardFeatureContext, LovelaceCardFeatureEditor } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import './grohe-blue-combined-feature-config';
@@ -55,8 +55,8 @@ export class GroheBlueCombinedFeature extends LitElement {
     });
   }
 
-  static getConfigElement(): HTMLElement {
-    return document.createElement('grohe-blue-combined-feature-config');
+  static getConfigElement(): LovelaceCardFeatureEditor {
+    return document.createElement('grohe-blue-combined-feature-config') as LovelaceCardFeatureEditor;
   }
 
   static getStubConfig(): GroheBlueCombinedFeatureConfig {
@@ -95,8 +95,8 @@ export class GroheBlueCombinedFeature extends LitElement {
     const cfg = kindConfig(this.config, kind);
     const sources = this._sources(kind);
     const edgeContent = getEdgeContent(this.config);
-    const display = computeLevelDisplay(sources, edgeContent === 'liter' ? 'liter' : 'percent', hass.locale?.language);
-    const title = computeLevelTitle(kind === 'co2' ? CO2_LABEL : setupCustomlocalize(hass)('feature.name.filter'), sources, hass.locale?.language);
+    const display = computeLevelDisplay(sources, edgeContent === 'liter' ? 'liter' : 'percent', hass.locale);
+    const title = computeLevelTitle(kind === 'co2' ? CO2_LABEL : setupCustomlocalize(hass)('feature.name.filter'), sources, hass.locale);
     const edge = html`<div class="edge ${first ? 'first' : 'second'}">
       ${edgeContent === 'icon' ? html`<ha-icon icon=${cfg.icon?.trim() || DEFAULT_ICONS[kind]}></ha-icon>` : display.text}
     </div>`;
@@ -127,6 +127,8 @@ export class GroheBlueCombinedFeature extends LitElement {
     return groheBlueCombinedFeatureStyles;
   }
 }
+
+GroheBlueCombinedFeature satisfies LovelaceCardFeatureConstructor;
 
 window.customCardFeatures ||= [];
 window.customCardFeatures.push({

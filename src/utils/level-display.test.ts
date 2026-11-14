@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { CO2_LABEL, computeLevelDisplay, computeLevelTitle, getBoolConfigVal, getEdgeContent, getUnit, getValuePosition, kindConfig, resolveCssColor, resolveIcon } from './level-display';
+import type { FrontendLocaleData } from 'custom-card-helpers';
+
+const locale = (number_format: string, language = 'en') => ({ language, number_format }) as FrontendLocaleData;
+const EN = locale('language');
 
 describe('config helpers', () => {
   it('getBoolConfigVal uses the default when unset', () => {
@@ -47,24 +51,24 @@ describe('computeLevelDisplay', () => {
   const sources = { percent: { origin: 'auto' as const, value: 98, unit: '%' }, liters: { origin: 'auto' as const, value: 55, unit: 'L' } };
 
   it('shows percent and drives the bar from it', () => {
-    expect(computeLevelDisplay(sources, 'percent', 'en')).toEqual({ percent: 98, text: '98 %', available: true });
+    expect(computeLevelDisplay(sources, 'percent', EN)).toEqual({ percent: 98, text: '98 %', available: true });
   });
 
   it('shows liters while the bar still follows the percentage', () => {
-    expect(computeLevelDisplay(sources, 'liter', 'en')).toEqual({ percent: 98, text: '55 L', available: true });
+    expect(computeLevelDisplay(sources, 'liter', EN)).toEqual({ percent: 98, text: '55 L', available: true });
   });
 
   it('falls back to percent when no liters value exists', () => {
-    expect(computeLevelDisplay({ percent: sources.percent }, 'liter', 'en').text).toBe('98 %');
+    expect(computeLevelDisplay({ percent: sources.percent }, 'liter', EN).text).toBe('98 %');
   });
 
   it('clamps the bar to 0-100', () => {
-    expect(computeLevelDisplay({ percent: { origin: 'auto', value: 140 } }, 'percent', 'en').percent).toBe(100);
-    expect(computeLevelDisplay({ percent: { origin: 'auto', value: -3 } }, 'percent', 'en').percent).toBe(0);
+    expect(computeLevelDisplay({ percent: { origin: 'auto', value: 140 } }, 'percent', EN).percent).toBe(100);
+    expect(computeLevelDisplay({ percent: { origin: 'auto', value: -3 } }, 'percent', EN).percent).toBe(0);
   });
 
   it('reports unavailable values', () => {
-    expect(computeLevelDisplay({ percent: { origin: 'auto' } }, 'percent', 'en')).toEqual({ percent: 0, text: '–', available: false });
+    expect(computeLevelDisplay({ percent: { origin: 'auto' } }, 'percent', EN)).toEqual({ percent: 0, text: '–', available: false });
   });
 });
 
@@ -84,13 +88,13 @@ describe('kindConfig', () => {
 describe('computeLevelTitle', () => {
   it('shows percent and liters regardless of the displayed unit', () => {
     const sources = { percent: { origin: 'auto' as const, value: 98 }, liters: { origin: 'auto' as const, value: 55 } };
-    expect(computeLevelTitle(CO2_LABEL, sources, 'en')).toBe('CO₂: 98 % / 55 l');
-    expect(computeLevelTitle('Filter', sources, 'en')).toBe('Filter: 98 % / 55 l');
+    expect(computeLevelTitle(CO2_LABEL, sources, EN)).toBe('CO₂: 98 % / 55 l');
+    expect(computeLevelTitle('Filter', sources, EN)).toBe('Filter: 98 % / 55 l');
   });
 
   it('omits liters when unavailable and shows a dash for a missing percentage', () => {
-    expect(computeLevelTitle('Filter', { percent: { origin: 'auto', value: 40 } }, 'en')).toBe('Filter: 40 %');
-    expect(computeLevelTitle('Filter', { liters: { origin: 'auto', value: 12 } }, 'en')).toBe('Filter: – / 12 l');
+    expect(computeLevelTitle('Filter', { percent: { origin: 'auto', value: 40 } }, EN)).toBe('Filter: 40 %');
+    expect(computeLevelTitle('Filter', { liters: { origin: 'auto', value: 12 } }, EN)).toBe('Filter: – / 12 l');
   });
 });
 
@@ -105,5 +109,25 @@ describe('getEdgeContent', () => {
   it('maps the legacy value + unit pair', () => {
     expect(getEdgeContent({ edge_content: 'value' })).toBe('percent');
     expect(getEdgeContent({ edge_content: 'value', unit: 'liter' })).toBe('liter');
+  });
+});
+
+describe('number format of the HA user profile', () => {
+  const sources = { percent: { origin: 'auto' as const, value: 98.5 }, liters: { origin: 'auto' as const, value: 1997.5 } };
+
+  it('follows the selected format in the displayed value', () => {
+    expect(computeLevelDisplay(sources, 'percent', locale('comma_decimal')).text).toBe('98.5 %');
+    expect(computeLevelDisplay(sources, 'percent', locale('decimal_comma')).text).toBe('98,5 %');
+    expect(computeLevelDisplay(sources, 'liter', locale('decimal_comma')).text).toContain('1.997,5');
+  });
+
+  it('uses the language when the format is "language" and rounds to one decimal', () => {
+    expect(computeLevelDisplay(sources, 'percent', locale('language', 'cs')).text).toBe('98,5 %');
+    expect(computeLevelDisplay({ percent: { origin: 'auto', value: 98.456 } }, 'percent', EN).text).toBe('98.5 %');
+  });
+
+  it('prints the plain number for the "none" format and works without a locale', () => {
+    expect(computeLevelTitle('Filter', sources, locale('none'))).toBe('Filter: 98.5 % / 1997.5 l');
+    expect(computeLevelDisplay({ percent: { origin: 'auto', value: 40 } }, 'percent').text).toBe('40 %');
   });
 });

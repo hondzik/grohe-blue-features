@@ -8,7 +8,7 @@ import { isLevelSupported, resolveLevelSources } from './utils/level-sources';
 import { ResetRefresher } from './utils/reset-refresher';
 import type { HoldTapCallbacks } from './utils/hold-tap';
 import type { LevelKind, LevelSources } from './utils/level-sources';
-import type { HomeAssistant } from 'custom-card-helpers';
+import type { HomeAssistant, LovelaceCardFeatureConstructor, LovelaceCardFeatureContext, LovelaceCardFeatureEditor } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
 import type { CSSResultGroup, PropertyValues, TemplateResult } from 'lit';
 import './grohe-blue-level-feature-config';
@@ -79,11 +79,11 @@ export abstract class GroheBlueLevelFeature extends LitElement {
       return html`<div class="level-row"><span class="value">${setupCustomlocalize(this.hass)('feature.unsupported')}</span></div>`;
     }
 
-    const display = computeLevelDisplay(this.sources, getUnit(this.config), this.hass.locale?.language);
+    const display = computeLevelDisplay(this.sources, getUnit(this.config), this.hass.locale);
     const position = getValuePosition(this.config);
     const icon = resolveIcon(this.config, this.kind);
     const value = html`<div class="value ${position}">${display.text}</div>`;
-    const title = computeLevelTitle(this.kind === 'co2' ? CO2_LABEL : setupCustomlocalize(this.hass)('feature.name.filter'), this.sources, this.hass.locale?.language);
+    const title = computeLevelTitle(this.kind === 'co2' ? CO2_LABEL : setupCustomlocalize(this.hass)('feature.name.filter'), this.sources, this.hass.locale);
     const interactive = isInteractive(this._actionCallbacks());
     const h = this._actions;
 
@@ -120,8 +120,8 @@ export abstract class GroheBlueLevelFeature extends LitElement {
 export class GroheBlueCo2Feature extends GroheBlueLevelFeature {
   protected readonly kind: LevelKind = 'co2';
 
-  static getConfigElement(): HTMLElement {
-    return document.createElement('grohe-blue-co2-feature-config');
+  static getConfigElement(): LovelaceCardFeatureEditor {
+    return document.createElement('grohe-blue-co2-feature-config') as LovelaceCardFeatureEditor;
   }
 
   static getStubConfig(): GroheBlueFeatureConfig {
@@ -133,14 +133,17 @@ export class GroheBlueCo2Feature extends GroheBlueLevelFeature {
 export class GroheBlueFilterFeature extends GroheBlueLevelFeature {
   protected readonly kind: LevelKind = 'filter';
 
-  static getConfigElement(): HTMLElement {
-    return document.createElement('grohe-blue-filter-feature-config');
+  static getConfigElement(): LovelaceCardFeatureEditor {
+    return document.createElement('grohe-blue-filter-feature-config') as LovelaceCardFeatureEditor;
   }
 
   static getStubConfig(): GroheBlueFeatureConfig {
     return { type: 'custom:grohe-blue-filter-feature' };
   }
 }
+
+GroheBlueCo2Feature satisfies LovelaceCardFeatureConstructor;
+GroheBlueFilterFeature satisfies LovelaceCardFeatureConstructor;
 
 window.customCardFeatures ||= [];
 window.customCardFeatures.push(

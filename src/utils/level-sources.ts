@@ -1,4 +1,4 @@
-import type { HomeAssistant } from 'custom-card-helpers';
+import type { EntityRegistryDisplayEntry, HomeAssistant } from 'custom-card-helpers';
 import type { HassEntity } from 'home-assistant-js-websocket';
 
 export const GROHE_PLATFORM = 'grohe_smarthome';
@@ -43,7 +43,7 @@ function baseObjectId(entityId: string): string {
 }
 
 function entityRegistry(hass: HomeAssistant): Record<string, EntityRegistryDisplayEntry> | undefined {
-  return (hass as HassWithRegistry).entities;
+  return hass.entities;
 }
 
 /** Platform (integration) of an entity, as known to the frontend's entity registry. */

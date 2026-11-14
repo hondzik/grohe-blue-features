@@ -38,6 +38,8 @@ The features are built for the [Grohe Smarthome](https://github.com/Flo-Schilli/
 
 Hovering a bar shows a tooltip with both values, e.g. `CO₂: 98 % / 55 l` or `Filter: 100 % / 1997 l`, whichever unit is displayed.
 
+Numbers follow the number format of your Home Assistant user profile (language default, `1,234.5`, `1.234,5`, `1 234,5` or no formatting), with at most one decimal.
+
 The CO<sub>2</sub> and filter features share the same [options](#configuration-options): value in **percent or liters**, progress bar **color**, value **position** (left or right of the bar) and an optional **icon**.
 
 ### CO<sub>2</sub>

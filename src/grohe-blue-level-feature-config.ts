@@ -6,13 +6,13 @@ import setupCustomlocalize from './localize';
 import { DEFAULT_COLORS, DEFAULT_ICONS, getBoolConfigVal, getUnit, getValuePosition } from './utils/level-display';
 import { discoverLevelEntities } from './utils/level-sources';
 import type { DiscoveredEntities, LevelKind } from './utils/level-sources';
-import type { HomeAssistant } from 'custom-card-helpers';
+import type { HomeAssistant, LovelaceCardFeatureContext, LovelaceCardFeatureEditor } from 'custom-card-helpers';
 import type { CSSResultGroup, TemplateResult } from 'lit';
 
 type SourceField = 'entity' | 'liters_entity';
 
 /** Shared visual editor of the CO2 and filter features; subclasses only differ in `kind`. */
-export abstract class GroheBlueLevelFeatureConfigEditor extends LitElement {
+export abstract class GroheBlueLevelFeatureConfigEditor extends LitElement implements LovelaceCardFeatureEditor {
   @property({ attribute: false }) hass?: HomeAssistant;
   @property({ attribute: false }) context?: LovelaceCardFeatureContext;
   @property({ type: Object }) config: Partial<GroheBlueFeatureConfig> = {};
@@ -33,10 +33,10 @@ export abstract class GroheBlueLevelFeatureConfigEditor extends LitElement {
   }
 
   private get _deviceName(): string | undefined {
-    const hass = this.hass as HassWithRegistry | undefined;
+    const hass = this.hass;
     const deviceId = this.context?.entity_id ? hass?.entities?.[this.context.entity_id]?.device_id : undefined;
     const device = deviceId ? hass?.devices?.[deviceId] : undefined;
-    return device?.name_by_user ?? device?.name;
+    return device?.name_by_user ?? device?.name ?? undefined;
   }
 
   render(): TemplateResult {

@@ -6,13 +6,13 @@ import setupCustomlocalize from './localize';
 import { DEFAULT_COLORS, DEFAULT_ICONS, getEdgeContent } from './utils/level-display';
 import { discoverLevelEntities, LEVEL_KINDS } from './utils/level-sources';
 import type { LevelKind } from './utils/level-sources';
-import type { HomeAssistant } from 'custom-card-helpers';
+import type { HomeAssistant, LovelaceCardFeatureContext, LovelaceCardFeatureEditor } from 'custom-card-helpers';
 import type { CSSResultGroup, TemplateResult } from 'lit';
 
 type ConfigKey = keyof GroheBlueCombinedFeatureConfig;
 
 @customElement('grohe-blue-combined-feature-config')
-export class GroheBlueCombinedFeatureConfigEditor extends LitElement {
+export class GroheBlueCombinedFeatureConfigEditor extends LitElement implements LovelaceCardFeatureEditor {
   @property({ attribute: false }) hass?: HomeAssistant;
   @property({ attribute: false }) context?: LovelaceCardFeatureContext;
   @property({ type: Object }) config: Partial<GroheBlueCombinedFeatureConfig> = {};
