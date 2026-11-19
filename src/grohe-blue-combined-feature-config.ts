@@ -1,3 +1,4 @@
+import { fireEvent } from 'custom-card-helpers';
 import { LitElement, html, nothing } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { renderActionOptions } from './action-options-editor';
@@ -155,6 +156,6 @@ export class GroheBlueCombinedFeatureConfigEditor extends LitElement implements 
       newConfig[key] = value;
     }
     this.config = newConfig as Partial<GroheBlueCombinedFeatureConfig>;
-    this.dispatchEvent(new CustomEvent('config-changed', { detail: { config: this.config }, bubbles: true, composed: true }));
+    fireEvent(this, 'config-changed', { config: this.config });
   }
 }

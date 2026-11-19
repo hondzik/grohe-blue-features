@@ -1,4 +1,4 @@
-import type { CustomCardFeatureEntry } from 'custom-card-helpers';
+import type { CustomCardFeatureEntry, LovelaceCardFeatureConfig } from 'custom-card-helpers';
 
 export {};
 
@@ -6,10 +6,6 @@ declare global {
   interface Window {
     customCardFeatures: CustomCardFeatureEntry[];
   }
-
-  type FeatureConfig = {
-    type: string;
-  };
 
   type GroheLevelUnit = 'percent' | 'liter';
 
@@ -24,7 +20,7 @@ declare global {
   };
   type GroheValuePosition = 'left' | 'right';
 
-  type GroheBlueFeatureConfig = FeatureConfig &
+  type GroheBlueFeatureConfig = LovelaceCardFeatureConfig &
     GroheActionOptions & {
       /** Unit of the displayed value; the progress bar always follows the percentage. */
       unit?: GroheLevelUnit;
@@ -42,7 +38,7 @@ declare global {
 
   type GroheEdgeContent = 'icon' | 'percent' | 'liter';
 
-  type GroheBlueCombinedFeatureConfig = FeatureConfig &
+  type GroheBlueCombinedFeatureConfig = LovelaceCardFeatureConfig &
     GroheActionOptions & {
       /** What is shown at the outer edge of each bar; the bars themselves always follow the percentage. `value` is the legacy form, resolved through `unit`. */
       edge_content?: GroheEdgeContent | 'value';
